@@ -1,0 +1,66 @@
+<section id="observatoire" class="observatory section-shell" aria-labelledby="observatory-title">
+  <div class="section-heading">
+    <div><p class="kicker">Les faits, pas le silence</p><h2 id="observatory-title">L’observatoire</h2></div>
+    <p class="section-intro">Chaque publication doit être contextualisée, sourcée et revue avant d’intégrer l’archive.</p>
+  </div>
+
+  <div class="demo-banner" role="note"><strong>Version de démonstration</strong><span>Les fiches ci-dessous illustrent le format éditorial. Elles ne décrivent aucun événement réel.</span></div>
+
+  <div class="filters" aria-label="Filtres des publications">
+    <label class="search-field">
+      <span class="sr-only">Rechercher</span>
+      <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m16 16 5 5"></path></svg>
+      <input type="search" placeholder="Rechercher un lieu, un mot-clé…" [value]="search()" (input)="updateSearch($event)">
+    </label>
+    <label><span class="sr-only">Filtrer par zone</span><select [value]="country()" (change)="updateCountry($event)"><option value="all">Tous les territoires</option>@for (item of countries(); track item) { <option [value]="item">{{ item }}</option> }</select></label>
+    <label><span class="sr-only">Filtrer par catégorie</span><select [value]="category()" (change)="updateCategory($event)"><option value="all">Toutes les catégories</option>@for (item of categories(); track item) { <option [value]="item">{{ item }}</option> }</select></label>
+    <button class="reset-button" type="button" (click)="resetFilters()">Effacer</button>
+  </div>
+
+  <div class="result-line"><p><strong>{{ filteredIncidents().length }}</strong> publication{{ filteredIncidents().length === 1 ? '' : 's' }}</p><div class="legend"><span></span> Contenu vérifié</div></div>
+
+  @if (loading()) {
+    <p class="empty-state">Chargement des publications…</p>
+  } @else if (loadError()) {
+    <p class="empty-state">Le catalogue ne peut pas être chargé pour le moment.</p>
+  } @else {
+    <div class="incident-grid" aria-live="polite">
+      @for (incident of filteredIncidents(); track incident.id; let index = $index) {
+        <article class="incident-card" tabindex="0" role="button" [attr.aria-label]="'Ouvrir la fiche : ' + incident.title" (click)="openIncident(incident)" (keydown.enter)="openIncident(incident)">
+          <div class="card-media">
+            <span class="card-badge" [class.verified-badge]="incident.verified">{{ incident.demo ? 'Modèle fictif' : incident.verified ? 'Vérifié' : 'À confirmer' }}</span>
+            <span class="play-mark" aria-hidden="true">{{ incident.videoUrl ? '▶' : (index + 1).toString().padStart(2, '0') }}</span>
+          </div>
+          <div class="card-body">
+            <p class="card-meta">{{ incident.country }} · {{ incident.category }}</p>
+            <h3>{{ incident.title }}</h3>
+            <p class="card-description">{{ incident.description }}</p>
+            <div class="card-footer"><span>{{ incident.city }} · {{ incident.date }}</span><button class="card-open" type="button" (click)="$event.stopPropagation(); openIncident(incident)">Ouvrir ↗</button></div>
+          </div>
+        </article>
+      } @empty {
+        <p class="empty-state">Aucune publication ne correspond à ces critères.</p>
+      }
+    </div>
+  }
+</section>
+
+<dialog #dialog class="incident-dialog" aria-labelledby="dialog-title" (click)="closeOnBackdrop($event)" (close)="selected.set(null)">
+  @if (selected(); as incident) {
+    <button class="dialog-close" type="button" aria-label="Fermer" (click)="closeDialog()">×</button>
+    <div class="dialog-media">
+      @if (incident.videoUrl && isDirectVideo(incident.videoUrl)) {
+        <video controls preload="metadata" [src]="incident.videoUrl"></video>
+      } @else {
+        <div class="dialog-placeholder"><strong>{{ incident.demo ? 'Fiche modèle' : 'Source externe' }}</strong><span>{{ incident.demo ? 'Aucune vidéo réelle n’est associée à cette démonstration.' : 'Consultez la source originale pour voir la séquence.' }}</span></div>
+      }
+    </div>
+    <div class="dialog-content">
+      <p class="card-meta">{{ incident.country }} · {{ incident.city }} · {{ incident.date }}</p>
+      <h2 id="dialog-title">{{ incident.title }}</h2>
+      <p>{{ incident.description }}</p>
+      <div class="tag-list">@for (tag of incident.tags; track tag) { <span>{{ tag }}</span> }</div>
+      @if (incident.sourceUrl) { <a class="button button-primary" [href]="incident.sourceUrl" target="_blank" rel="noreferrer">Voir la source <span aria-hidden="true">↗</span></a> }
+    </div>
+  }
+</dialog>

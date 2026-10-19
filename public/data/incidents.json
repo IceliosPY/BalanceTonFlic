@@ -1,0 +1,47 @@
+[
+  {
+    "id": "modele-manifestation",
+    "title": "Documenter une intervention en manifestation",
+    "description": "Cette fiche fictive montre comment présenter une séquence : contexte de la mobilisation, chronologie observable, source originale et éléments restant à confirmer.",
+    "date": "Entrée modèle",
+    "city": "Ville exemple",
+    "country": "France",
+    "category": "Manifestation",
+    "status": "À documenter",
+    "verified": false,
+    "demo": true,
+    "videoUrl": "",
+    "sourceUrl": "",
+    "tags": ["contexte", "chronologie"]
+  },
+  {
+    "id": "modele-controle",
+    "title": "Documenter un contrôle dans l’espace public",
+    "description": "Une publication complète distingue ce que montrent les images, les déclarations des témoins et les informations confirmées par des sources indépendantes.",
+    "date": "Entrée modèle",
+    "city": "Lieu exemple",
+    "country": "International",
+    "category": "Contrôle",
+    "status": "À documenter",
+    "verified": false,
+    "demo": true,
+    "videoUrl": "",
+    "sourceUrl": "",
+    "tags": ["témoignage", "sources"]
+  },
+  {
+    "id": "modele-protection",
+    "title": "Publier en protégeant les personnes filmées",
+    "description": "Avant diffusion, les visages et signes distinctifs des personnes exposées doivent être évalués, ainsi que les risques liés à la géolocalisation et aux métadonnées.",
+    "date": "Entrée modèle",
+    "city": "Guide éditorial",
+    "country": "International",
+    "category": "Méthodologie",
+    "status": "Guide",
+    "verified": false,
+    "demo": true,
+    "videoUrl": "",
+    "sourceUrl": "",
+    "tags": ["protection", "consentement"]
+  }
+]
