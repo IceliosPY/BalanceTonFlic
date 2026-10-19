@@ -14,15 +14,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Configure Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.12'
 
       - name: Install downloader
         run: python -m pip install --disable-pip-version-check yt-dlp
+
+      - name: Install media tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes ffmpeg jq
+          python -m yt_dlp --version
+          ffmpeg -version | head -n 1
+          jq --version
 
       - name: Download and optimize videos
         shell: bash
@@ -36,13 +44,15 @@ jobs:
             local fallback_url="${3:-}"
             local output="/tmp/btf-import/${name}.%(ext)s"
 
-            if ! yt-dlp --no-playlist --write-info-json \
+            if ! python -m yt_dlp --no-playlist --write-info-json \
+              --retries 3 --fragment-retries 3 --socket-timeout 30 \
               -f 'bv*[height<=720]+ba/b[height<=720]/b' \
               --merge-output-format mp4 -o "$output" "$primary_url"; then
               if [[ -z "$fallback_url" ]]; then
                 return 1
               fi
-              yt-dlp --no-playlist --write-info-json \
+              python -m yt_dlp --no-playlist --write-info-json \
+                --retries 3 --fragment-retries 3 --socket-timeout 30 \
                 -f 'bv*[height<=720]+ba/b[height<=720]/b' \
                 --merge-output-format mp4 -o "$output" "$fallback_url"
             fi
