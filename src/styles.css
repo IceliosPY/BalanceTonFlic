@@ -49,7 +49,7 @@ button, input, select { font: inherit; }
 
 .hero { background: var(--black); color: var(--white); border-bottom: 8px solid var(--red); }
 .hero-inner { padding-block: clamp(74px, 10vw, 140px); }
-.eyebrow, .kicker { margin: 0 0 22px; color: var(--red); font-size: .72rem; font-weight: 900; text-transform: uppercase; letter-spacing: .16em; }
+.kicker { margin: 0 0 22px; color: var(--red); font-size: .72rem; font-weight: 900; text-transform: uppercase; letter-spacing: .16em; }
 .hero h1, .archive-heading h2 {
   margin: 0;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
