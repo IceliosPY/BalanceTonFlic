@@ -43,7 +43,7 @@
     <div class="dialog-content">
       <p class="card-meta">{{ incident.country }} · {{ incident.city }} · {{ incident.date }}</p>
       <h2 id="dialog-title">{{ incident.title }}</h2>
-      <p>{{ incident.description }}</p>
+      @if (incident.description) { <p>{{ incident.description }}</p> }
       <p class="verification-state">{{ incident.status }}</p>
       <div class="dialog-actions">
         <a class="button button-primary" [href]="incident.audioUrl" download>Télécharger l’audio ↓</a>
