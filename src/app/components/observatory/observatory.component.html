@@ -20,7 +20,7 @@
             <span class="play-mark" aria-hidden="true">▶</span>
           </div>
           <div class="card-body">
-            <p class="card-meta">{{ incident.country }} · {{ incident.city }}</p>
+            <p class="card-meta">@if (incident.country) { {{ incident.country }} · }{{ incident.city }}</p>
             <h3>{{ incident.title }}</h3>
             <footer><span>Voir la vidéo →</span></footer>
           </div>
@@ -39,7 +39,7 @@
       }
     </div>
     <div class="dialog-content">
-      <p class="card-meta">{{ incident.country }} · {{ incident.city }} · {{ incident.date }}</p>
+      <p class="card-meta">@if (incident.country) { {{ incident.country }} · }{{ incident.city }} · {{ incident.date }}</p>
       <h2 id="dialog-title">{{ incident.title }}</h2>
       <div class="dialog-actions">
         <a class="button button-primary" [href]="incident.audioUrl" download>Télécharger l’audio ↓</a>

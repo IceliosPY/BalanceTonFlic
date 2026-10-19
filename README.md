@@ -1,6 +1,6 @@
 # Balance ton flic
 
-Observatoire international des violences policières, sous-projet du mouvement **Transfem Era**. L’interface est développée avec **Angular** et **TypeScript**, puis compilée en site statique.
+Observatoire des violences policières, sous-projet du mouvement **Transfem Era**. L’interface est développée avec **Angular** et **TypeScript**, puis compilée en site statique.
 
 ## Développement local
 
