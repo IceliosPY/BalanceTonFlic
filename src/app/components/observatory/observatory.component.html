@@ -11,7 +11,6 @@
   } @else if (loadError()) {
     <p class="empty-state">Les archives sont momentanément indisponibles.</p>
   } @else {
-    <div class="archive-count">{{ incidents().length }} archive{{ incidents().length === 1 ? '' : 's' }}</div>
     <div class="incident-grid">
       @for (incident of incidents(); track incident.id; let index = $index) {
         <article class="incident-card" tabindex="0" role="button" [attr.aria-label]="'Voir la vidéo : ' + incident.title" (click)="openIncident(incident)" (keydown.enter)="openIncident(incident)" (keydown.space)="$event.preventDefault(); openIncident(incident)">

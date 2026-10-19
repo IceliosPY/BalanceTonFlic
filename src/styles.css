@@ -65,8 +65,7 @@ button, input, select { font: inherit; }
 .observatory { padding-block: 100px 120px; }
 .archive-heading { padding-bottom: 28px; border-bottom: 2px solid var(--black); }
 .archive-heading h2 { font-size: clamp(4rem, 8vw, 7.5rem); line-height: .82; }
-.archive-count { padding-block: 20px; color: var(--muted); font-size: .7rem; font-weight: 900; text-transform: uppercase; letter-spacing: .13em; }
-.incident-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 38px 24px; }
+.incident-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 38px 24px; padding-top: 28px; }
 .incident-card { min-width: 0; background: var(--white); border: 1px solid var(--line); cursor: pointer; transition: transform .18s ease, box-shadow .18s ease; }
 .incident-card:hover { transform: translateY(-4px); box-shadow: 7px 7px 0 var(--red); }
 .card-media { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #191919; }
