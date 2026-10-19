@@ -36,60 +36,75 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p /tmp/btf-import public/videos imports/video-metadata
+          mkdir -p /tmp/btf-import public/videos imports/video-metadata imports/video-errors
 
           download_video() {
             local name="$1"
             local primary_url="$2"
             local fallback_url="${3:-}"
             local output="/tmp/btf-import/${name}.%(ext)s"
+            local log="imports/video-errors/${name}.log"
+
+            : > "$log"
 
             if ! python -m yt_dlp --no-playlist --write-info-json \
               --retries 3 --fragment-retries 3 --socket-timeout 30 \
               -f 'bv*[height<=720]+ba/b[height<=720]/b' \
-              --merge-output-format mp4 -o "$output" "$primary_url"; then
+              --merge-output-format mp4 -o "$output" "$primary_url" 2>&1 | tee -a "$log"; then
               if [[ -z "$fallback_url" ]]; then
                 return 1
               fi
-              python -m yt_dlp --no-playlist --write-info-json \
+              if ! python -m yt_dlp --no-playlist --write-info-json \
                 --retries 3 --fragment-retries 3 --socket-timeout 30 \
                 -f 'bv*[height<=720]+ba/b[height<=720]/b' \
-                --merge-output-format mp4 -o "$output" "$fallback_url"
+                --merge-output-format mp4 -o "$output" "$fallback_url" 2>&1 | tee -a "$log"; then
+                return 1
+              fi
             fi
 
             local input
             input="$(find /tmp/btf-import -maxdepth 1 -type f -name "${name}.*" ! -name '*.json' | head -n 1)"
-            test -n "$input"
+            if [[ -z "$input" ]]; then
+              echo 'No media file was produced.' >> "$log"
+              return 1
+            fi
 
-            ffmpeg -hide_banner -loglevel error -y -i "$input" \
+            if ! ffmpeg -hide_banner -loglevel error -y -i "$input" \
               -map_metadata -1 -vf "scale='min(720,iw)':-2" \
               -c:v libx264 -preset medium -crf 28 \
               -c:a aac -b:a 96k -movflags +faststart \
-              "public/videos/${name}.mp4"
+              "public/videos/${name}.mp4" 2>&1 | tee -a "$log"; then
+              return 1
+            fi
 
-            jq '{id, title, description, duration, uploader, upload_date, webpage_url}' \
-              "/tmp/btf-import/${name}.info.json" > "imports/video-metadata/${name}.json"
+            if ! jq '{id, title, description, duration, uploader, upload_date, webpage_url}' \
+              "/tmp/btf-import/${name}.info.json" > "imports/video-metadata/${name}.json"; then
+              echo 'Metadata extraction failed.' >> "$log"
+              return 1
+            fi
+
+            rm -f "$log"
           }
 
           download_video 'instagram-DemO6D5NDb9' \
             'https://www.kkinstagram.com/reels/DemO6D5NDb9/' \
-            'https://www.instagram.com/reel/DemO6D5NDb9/'
+            'https://www.instagram.com/reel/DemO6D5NDb9/' || true
           download_video 'instagram-DejUMzyjNrB' \
             'https://www.kkinstagram.com/reels/DejUMzyjNrB/' \
-            'https://www.instagram.com/reel/DejUMzyjNrB/'
+            'https://www.instagram.com/reel/DejUMzyjNrB/' || true
           download_video 'instagram-DepJmG2usmG' \
             'https://www.kkinstagram.com/reels/DepJmG2usmG/' \
-            'https://www.instagram.com/reel/DepJmG2usmG/'
+            'https://www.instagram.com/reel/DepJmG2usmG/' || true
           download_video 'instagram-Deps9Q_ikY7' \
             'https://www.kkinstagram.com/reel/Deps9Q_ikY7/' \
-            'https://www.instagram.com/reel/Deps9Q_ikY7/'
+            'https://www.instagram.com/reel/Deps9Q_ikY7/' || true
           download_video 'bluesky-3my7rffo6sk2n' \
-            'https://bsky.app/profile/npa-antica.bsky.social/post/3my7rffo6sk2n'
+            'https://bsky.app/profile/npa-antica.bsky.social/post/3my7rffo6sk2n' || true
 
       - name: Commit imported videos
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add public/videos imports/video-metadata
+          git add public/videos imports/video-metadata imports/video-errors
           git commit -m 'Import source videos'
           git push
