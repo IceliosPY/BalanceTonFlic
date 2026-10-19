@@ -3,7 +3,7 @@
     <div><p class="kicker">Les faits, pas le silence</p><h2 id="observatory-title">L’observatoire</h2></div>
     <p class="section-intro">Chaque publication doit être contextualisée, sourcée et revue avant d’intégrer l’archive.</p>
   </div>
-  <div class="demo-banner" role="note"><strong>Version de démonstration</strong><span>Les fiches ci-dessous illustrent le format éditorial. Elles ne décrivent aucun événement réel.</span></div>
+  <div class="demo-banner" role="note"><strong>Archives en cours de vérification</strong><span>Les sources originales sont conservées avec chaque vidéo. Les éléments non confirmés sont explicitement signalés.</span></div>
 
   <div class="filters" aria-label="Filtres des publications">
     <label class="search-field">
@@ -16,7 +16,7 @@
     <button class="reset-button" type="button" (click)="resetFilters()">Effacer</button>
   </div>
 
-  <div class="result-line"><p><strong>{{ filteredIncidents().length }}</strong> publication{{ filteredIncidents().length === 1 ? '' : 's' }}</p><div class="legend"><span></span> Contenu vérifié</div></div>
+  <div class="result-line"><p><strong>{{ filteredIncidents().length }}</strong> publication{{ filteredIncidents().length === 1 ? '' : 's' }}</p><div class="legend"><span></span> Source conservée</div></div>
 
   @if (loading()) {
     <p class="empty-state">Chargement des publications…</p>
