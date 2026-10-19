@@ -11,6 +11,7 @@ export interface Incident {
   readonly demo: boolean;
   readonly videoUrl: string;
   readonly audioUrl: string;
+  readonly thumbnailUrl: string;
   readonly sourceUrl: string;
   readonly tags: readonly string[];
 }

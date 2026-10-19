@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'btf-site-header',
@@ -6,8 +6,4 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SiteHeaderComponent {
-  readonly menuOpen = signal(false);
-
-  toggleMenu(): void { this.menuOpen.update((open) => !open); }
-  closeMenu(): void { this.menuOpen.set(false); }
 }

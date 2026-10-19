@@ -6,12 +6,12 @@ const incidents: readonly Incident[] = [
   {
     id: 'one', title: 'Manifestation à Paris', description: 'Description', date: '2026-01-01', city: 'Paris',
     country: 'France', category: 'Manifestation', status: 'Vérifié', verified: true, demo: false,
-    videoUrl: '', audioUrl: '', sourceUrl: '', tags: ['témoignage']
+    videoUrl: '', audioUrl: '', thumbnailUrl: '', sourceUrl: '', tags: ['témoignage']
   },
   {
     id: 'two', title: 'Contrôle public', description: 'Description', date: '2026-01-02', city: 'Bruxelles',
     country: 'Belgique', category: 'Contrôle', status: 'À confirmer', verified: false, demo: false,
-    videoUrl: '', audioUrl: '', sourceUrl: '', tags: ['source']
+    videoUrl: '', audioUrl: '', thumbnailUrl: '', sourceUrl: '', tags: ['source']
   }
 ];
 

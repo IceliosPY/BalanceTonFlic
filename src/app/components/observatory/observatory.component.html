@@ -1,44 +1,32 @@
 <section id="observatoire" class="observatory section-shell" aria-labelledby="observatory-title">
-  <div class="section-heading">
-    <div><p class="kicker">Les faits, pas le silence</p><h2 id="observatory-title">L’observatoire</h2></div>
-    <p class="section-intro">Chaque publication doit être contextualisée, sourcée et revue avant d’intégrer l’archive.</p>
-  </div>
-  <div class="demo-banner" role="note"><strong>Archives en cours de vérification</strong><span>Les sources originales sont conservées avec chaque vidéo. Les éléments non confirmés sont explicitement signalés.</span></div>
-
-  <div class="filters" aria-label="Filtres des publications">
-    <label class="search-field">
-      <span class="sr-only">Rechercher</span>
-      <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m16 16 5 5"></path></svg>
-      <input type="search" placeholder="Rechercher un lieu, un mot-clé…" [value]="search()" (input)="updateSearch($event)">
-    </label>
-    <label><span class="sr-only">Filtrer par zone</span><select [value]="country()" (change)="updateCountry($event)"><option value="all">Tous les territoires</option>@for (item of countries(); track item) { <option [value]="item">{{ item }}</option> }</select></label>
-    <label><span class="sr-only">Filtrer par catégorie</span><select [value]="category()" (change)="updateCategory($event)"><option value="all">Toutes les catégories</option>@for (item of categories(); track item) { <option [value]="item">{{ item }}</option> }</select></label>
-    <button class="reset-button" type="button" (click)="resetFilters()">Effacer</button>
-  </div>
-
-  <div class="result-line"><p><strong>{{ filteredIncidents().length }}</strong> publication{{ filteredIncidents().length === 1 ? '' : 's' }}</p><div class="legend"><span></span> Source conservée</div></div>
+  <header class="archive-heading">
+    <div>
+      <p class="kicker">Archives récentes</p>
+      <h2 id="observatory-title">Les vidéos</h2>
+    </div>
+    <p>Images sensibles. Les sources sont conservées et les éléments non confirmés sont signalés.</p>
+  </header>
 
   @if (loading()) {
-    <p class="empty-state">Chargement des publications…</p>
+    <p class="empty-state">Chargement des archives…</p>
   } @else if (loadError()) {
-    <p class="empty-state">Le catalogue ne peut pas être chargé pour le moment.</p>
+    <p class="empty-state">Les archives sont momentanément indisponibles.</p>
   } @else {
-    <div class="incident-grid" aria-live="polite">
-      @for (incident of filteredIncidents(); track incident.id; let index = $index) {
-        <article class="incident-card" tabindex="0" role="button" [attr.aria-label]="'Ouvrir la fiche : ' + incident.title" (click)="openIncident(incident)" (keydown.enter)="openIncident(incident)">
+    <div class="archive-count">{{ incidents().length }} archive{{ incidents().length === 1 ? '' : 's' }}</div>
+    <div class="incident-grid">
+      @for (incident of incidents(); track incident.id; let index = $index) {
+        <article class="incident-card" tabindex="0" role="button" [attr.aria-label]="'Voir la vidéo : ' + incident.title" (click)="openIncident(incident)" (keydown.enter)="openIncident(incident)" (keydown.space)="$event.preventDefault(); openIncident(incident)">
           <div class="card-media">
-            <span class="card-badge" [class.verified-badge]="incident.verified">{{ incident.demo ? 'Modèle fictif' : incident.verified ? 'Vérifié' : 'À confirmer' }}</span>
-            <span class="play-mark" aria-hidden="true">{{ incident.videoUrl ? '▶' : (index + 1).toString().padStart(2, '0') }}</span>
+            <img [src]="incident.thumbnailUrl" alt="" loading="lazy">
+            <span class="card-index">{{ (index + 1).toString().padStart(2, '0') }}</span>
+            <span class="play-mark" aria-hidden="true">▶</span>
           </div>
           <div class="card-body">
-            <p class="card-meta">{{ incident.country }} · {{ incident.category }}</p>
+            <p class="card-meta">{{ incident.country }} · {{ incident.city }}</p>
             <h3>{{ incident.title }}</h3>
-            <p class="card-description">{{ incident.description }}</p>
-            <div class="card-footer"><span>{{ incident.city }} · {{ incident.date }}</span><button class="card-open" type="button" (click)="$event.stopPropagation(); openIncident(incident)">Ouvrir ↗</button></div>
+            <footer><span>{{ incident.category }}</span><span>Voir la vidéo →</span></footer>
           </div>
         </article>
-      } @empty {
-        <p class="empty-state">Aucune publication ne correspond à ces critères.</p>
       }
     </div>
   }
@@ -49,19 +37,17 @@
     <button class="dialog-close" type="button" aria-label="Fermer" (click)="closeDialog()">×</button>
     <div class="dialog-media">
       @if (incident.videoUrl && isDirectVideo(incident.videoUrl)) {
-        <video controls preload="metadata" [src]="incident.videoUrl"></video>
-      } @else {
-        <div class="dialog-placeholder"><strong>{{ incident.demo ? 'Fiche modèle' : 'Source externe' }}</strong><span>{{ incident.demo ? 'Aucune vidéo réelle n’est associée à cette démonstration.' : 'Consultez la source originale pour voir la séquence.' }}</span></div>
+        <video controls preload="metadata" [poster]="incident.thumbnailUrl" [src]="incident.videoUrl"></video>
       }
     </div>
     <div class="dialog-content">
       <p class="card-meta">{{ incident.country }} · {{ incident.city }} · {{ incident.date }}</p>
       <h2 id="dialog-title">{{ incident.title }}</h2>
       <p>{{ incident.description }}</p>
-      <div class="tag-list">@for (tag of incident.tags; track tag) { <span>{{ tag }}</span> }</div>
+      <p class="verification-state">{{ incident.status }}</p>
       <div class="dialog-actions">
-        @if (incident.audioUrl) { <a class="button button-primary" [href]="incident.audioUrl" download>Télécharger l’audio <span aria-hidden="true">↓</span></a> }
-        @if (incident.sourceUrl) { <a class="button button-light" [href]="incident.sourceUrl" target="_blank" rel="noreferrer">Voir la source <span aria-hidden="true">↗</span></a> }
+        <a class="button button-primary" [href]="incident.audioUrl" download>Télécharger l’audio ↓</a>
+        <a class="button button-outline" [href]="incident.sourceUrl" target="_blank" rel="noreferrer">Source originale ↗</a>
       </div>
     </div>
   }
