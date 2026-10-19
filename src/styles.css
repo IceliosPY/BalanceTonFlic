@@ -209,9 +209,9 @@ body {
     linear-gradient(95deg, transparent 0 49.8%, rgba(9, 9, 9, .035) 50%, transparent 50.2%);
 }
 .site-header { height: 94px; border-bottom: 3px solid var(--red); }
-.brand { width: 282px; transform: rotate(-.5deg); transition: transform .2s ease; }
-.brand:hover { transform: rotate(.3deg) scale(1.018); }
-.brand img { filter: none; }
+.brand { width: 78px; height: 78px; flex-basis: 78px; transform: rotate(-2deg); transition: transform .2s ease; }
+.brand:hover { transform: rotate(2deg) scale(1.04); }
+.brand img { width: 100%; height: 100%; object-fit: contain; filter: none; }
 .main-nav a:not(.nav-cta) { position: relative; }
 .main-nav a:not(.nav-cta)::after { content: ""; position: absolute; left: -4px; right: 100%; bottom: -7px; height: 3px; background: var(--red); transform: rotate(-2deg); transition: right .2s ease; }
 .main-nav a:not(.nav-cta):hover::after { right: -5px; }
@@ -307,11 +307,11 @@ body {
 .movement-mark::before { content: ""; position: absolute; inset: 7%; border: 3px solid var(--white); border-radius: 52% 48% 55% 45% / 44% 56% 46% 54%; transform: rotate(4deg); }
 .movement-copy { position: relative; z-index: 1; }
 .contribute { position: relative; clip-path: polygon(0 4%, 11% 1%, 23% 4%, 37% 0, 52% 3%, 67% .5%, 82% 3.5%, 100% 1%, 100% 100%, 0 100%); padding-top: 130px; }
-.site-footer > img { width: 280px; transform: rotate(-.5deg); }
+.site-footer > img { width: 142px; transform: rotate(-2deg); }
 
 @media (max-width: 980px) {
   .site-header { height: 84px; }
-  .brand { width: 225px; }
+  .brand { width: 66px; height: 66px; flex-basis: 66px; }
   .menu-toggle { display: block; }
   .main-nav { position: absolute; display: none; flex-direction: column; align-items: stretch; gap: 0; left: 0; right: 0; top: 84px; padding: 25px 32px; background: var(--black); border-top: 1px solid #333; }
   .main-nav.open { display: flex; }
