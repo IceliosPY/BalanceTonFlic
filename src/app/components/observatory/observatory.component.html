@@ -59,7 +59,10 @@
       <h2 id="dialog-title">{{ incident.title }}</h2>
       <p>{{ incident.description }}</p>
       <div class="tag-list">@for (tag of incident.tags; track tag) { <span>{{ tag }}</span> }</div>
-      @if (incident.sourceUrl) { <a class="button button-primary" [href]="incident.sourceUrl" target="_blank" rel="noreferrer">Voir la source <span aria-hidden="true">↗</span></a> }
+      <div class="dialog-actions">
+        @if (incident.audioUrl) { <a class="button button-primary" [href]="incident.audioUrl" download>Télécharger l’audio <span aria-hidden="true">↓</span></a> }
+        @if (incident.sourceUrl) { <a class="button button-light" [href]="incident.sourceUrl" target="_blank" rel="noreferrer">Voir la source <span aria-hidden="true">↗</span></a> }
+      </div>
     </div>
   }
 </dialog>

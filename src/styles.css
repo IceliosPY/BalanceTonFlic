@@ -199,6 +199,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .dialog-content h2 { margin: 0 0 15px; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1; }
 .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 25px 0; }
 .tag-list span { padding: 6px 9px; background: #dfd9cf; font-size: .7rem; font-weight: 800; text-transform: uppercase; }
+.dialog-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.dialog-actions .button-light { border-color: var(--black); }
 
 /* Une couche volontairement imparfaite : papier, collage et gestes manuels. */
 body {
