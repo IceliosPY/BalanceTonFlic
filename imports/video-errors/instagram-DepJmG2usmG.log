@@ -1,0 +1,12 @@
+[generic] Extracting URL: https://www.kkinstagram.com/reels/DepJmG2usmG/
+[generic] DepJmG2usmG: Downloading webpage
+[redirect] Following redirect to https://kkclip.com/open/ig/4010779144269515142/DepJmG2usmG
+[generic] Extracting URL: https://kkclip.com/open/ig/4010779144269515142/DepJmG2usmG
+[generic] DepJmG2usmG: Downloading webpage
+WARNING: [generic] Falling back on generic information extractor
+[generic] DepJmG2usmG: Extracting information
+ERROR: Unsupported URL: https://kkclip.com/open/ig/4010779144269515142/DepJmG2usmG
+[Instagram] Setting up session
+[Instagram] Extracting URL: https://www.instagram.com/reel/DepJmG2usmG/
+[Instagram] DepJmG2usmG: Checking post accessibility
+ERROR: [Instagram] DepJmG2usmG: This content isn't available to everyone: It can't be seen by certain audiences.
