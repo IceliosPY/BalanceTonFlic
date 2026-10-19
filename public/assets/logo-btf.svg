@@ -1,18 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 190" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 150" role="img" aria-labelledby="title desc">
   <title id="title">Balance ton flic</title>
-  <desc id="desc">Mot-symbole rouge, noir et blanc inspiré d’une affiche sérigraphiée</desc>
-  <path fill="#e10600" d="M12 31 178 13l183 6L592 6l17 44-10 112-151 10-188-5-239 15L5 126Z"/>
-  <path fill="none" stroke="#fffaf2" stroke-width="9" stroke-linecap="round" d="M30 38c110-21 208-24 304-11M73 159c132 17 258 13 367-5"/>
-  <g fill="#090909" font-family="Arial Black,DejaVu Sans,sans-serif" font-weight="900">
-    <text x="28" y="92" font-size="73" letter-spacing="-5" transform="rotate(-3 28 92)">BALANCE</text>
-    <text x="42" y="146" font-size="58" letter-spacing="-4" transform="rotate(2 42 146)">TON</text>
+  <desc id="desc">Mot-symbole éditorial rouge et blanc cassé</desc>
+
+  <g transform="translate(8 9)">
+    <path fill="#e10600" d="M0 4 74 0l-3 73-67 5Z"/>
+    <path fill="none" stroke="#fffaf2" stroke-width="8" stroke-linecap="square" d="m17 58 41-43"/>
+    <path fill="none" stroke="#090909" stroke-width="3" d="m13 62 49-51" opacity=".7"/>
   </g>
-  <g transform="translate(165 94) rotate(-7)">
-    <path fill="#090909" d="M0 23 63 0v52L0 34H-18V21Z"/>
-    <path fill="#090909" d="m-10 34 14 42h22L13 35Z"/>
-    <path fill="none" stroke="#fffaf2" stroke-width="5" stroke-linecap="round" d="m72 6 17-13m-12 30 23-2M72 42l18 13"/>
+
+  <g font-family="Arial Narrow,Helvetica Neue,Arial,sans-serif" font-weight="900">
+    <text x="101" y="68" fill="#fffaf2" font-size="64" letter-spacing="-3">BALANCE</text>
+    <text x="99" y="126" fill="#e10600" font-size="68" letter-spacing="-4">TON FLIC</text>
   </g>
-  <text x="283" y="148" fill="#fffaf2" stroke="#090909" stroke-width="2" paint-order="stroke" font-family="Arial Black,DejaVu Sans,sans-serif" font-size="89" font-weight="900" letter-spacing="-7" transform="rotate(-2 283 148)">FLIC</text>
-  <text x="430" y="29" fill="#fffaf2" font-family="Courier New,monospace" font-size="12" font-weight="700" letter-spacing="2">OBSERVATOIRE</text>
-  <path fill="none" stroke="#090909" stroke-width="7" stroke-linecap="round" d="m304 164 78 3m11-1 103-7"/>
+
+  <path fill="none" stroke="#fffaf2" stroke-width="3" stroke-linecap="round" d="M102 78c91 3 183-1 272 1" opacity=".65"/>
+  <path fill="none" stroke="#e10600" stroke-width="5" stroke-linecap="round" d="M102 137c67-4 142-3 213-1m10 0 72-4"/>
+  <text x="411" y="136" fill="#fffaf2" font-family="Courier New,monospace" font-size="12" font-weight="700" letter-spacing="2">OBSERVATOIRE</text>
 </svg>
