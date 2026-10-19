@@ -10,3 +10,16 @@ ERROR: Unsupported URL: https://kkclip.com/open/ig/4010779144269515142/DepJmG2us
 [Instagram] Extracting URL: https://www.instagram.com/reel/DepJmG2usmG/
 [Instagram] DepJmG2usmG: Checking post accessibility
 ERROR: [Instagram] DepJmG2usmG: This content isn't available to everyone: It can't be seen by certain audiences.
+[Instagram] Setting up session
+[Instagram] Extracting URL: https://www.instagram.com/reel/DepJmG2usmG/embed/
+[Instagram] DepJmG2usmG: Checking post accessibility
+ERROR: [Instagram] DepJmG2usmG: This content isn't available to everyone: It can't be seen by certain audiences.
+[generic] Extracting URL: https://d.ddinstagram.com/reel/DepJmG2usmG/
+[generic] DepJmG2usmG: Downloading webpage
+ERROR: [generic] DepJmG2usmG: Unable to download webpage: [Errno -2] Name or service not known (caused by TransportError('[Errno -2] Name or service not known'))
+[generic] Extracting URL: https://www.ddinstagram.com/reel/DepJmG2usmG/
+[generic] DepJmG2usmG: Downloading webpage
+ERROR: [generic] DepJmG2usmG: Unable to download webpage: [Errno -2] Name or service not known (caused by TransportError('[Errno -2] Name or service not known'))
+[generic] Extracting URL: https://www.vxinstagram.com/reel/DepJmG2usmG/
+[generic] DepJmG2usmG: Downloading webpage
+ERROR: [generic] DepJmG2usmG: Unable to download webpage: HTTP Error 404: Not Found (caused by <HTTPError 404: Not Found>)
