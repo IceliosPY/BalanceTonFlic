@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { sortIncidentsNewestFirst } from '../../models/incident-date';
 import { Incident } from '../../models/incident';
 import { IncidentService } from '../../services/incident.service';
 
@@ -20,7 +21,7 @@ export class ObservatoryComponent {
 
   constructor() {
     this.incidentService.getIncidents().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
-      next: (incidents) => { this.incidents.set(incidents); this.loading.set(false); },
+      next: (incidents) => { this.incidents.set(sortIncidentsNewestFirst(incidents)); this.loading.set(false); },
       error: () => { this.loadError.set(true); this.loading.set(false); }
     });
   }
