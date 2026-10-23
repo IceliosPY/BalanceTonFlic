@@ -1,8 +1,22 @@
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero-inner section-shell">
-    <h1 id="hero-title">Filmer.<br><em>Documenter.</em><br>Archiver.</h1>
-    <div class="hero-summary">
-      <a href="#observatoire">Voir les archives <span aria-hidden="true">↓</span></a>
+    @if (latest(); as incident) {
+      <article class="latest-clip" aria-labelledby="latest-clip-title">
+        <p class="latest-label">Dernier clip publié</p>
+        <video controls preload="metadata" [poster]="incident.thumbnailUrl" [src]="incident.videoUrl"></video>
+        <div class="latest-content">
+          <p class="latest-meta">{{ incident.date }} · {{ incident.city }}</p>
+          <h2 id="latest-clip-title">{{ incident.title }}</h2>
+          <a [href]="incident.sourceUrl" target="_blank" rel="noreferrer">Source originale <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+    }
+
+    <div class="hero-message">
+      <h1 id="hero-title">Filmer.<br><em>Documenter.</em><br>Archiver.</h1>
+      <div class="hero-summary">
+        <a href="#observatoire">Voir les archives <span aria-hidden="true">↓</span></a>
+      </div>
     </div>
   </div>
 </section>
