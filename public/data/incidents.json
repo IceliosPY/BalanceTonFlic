@@ -593,5 +593,39 @@
     "thumbnailUrl": "thumbnails/instagram-Ddvqb0_uh1h.jpg",
     "sourceUrl": "https://www.kkinstagram.com/p/Ddvqb0_uh1h/",
     "tags": []
+  },
+  {
+    "id": "threads-de7iatealf-",
+    "title": "Usage de gaz à proximité d’enfants à Rouen",
+    "description": "",
+    "date": "Publié le 25 octobre 2026",
+    "city": "Rouen",
+    "country": "France",
+    "category": "Intervention",
+    "status": "Source archivée",
+    "verified": false,
+    "demo": false,
+    "videoUrl": "videos/threads-De7IaTEALf_.mp4",
+    "audioUrl": "audio/threads-De7IaTEALf_.mp3",
+    "thumbnailUrl": "thumbnails/threads-De7IaTEALf_.jpg",
+    "sourceUrl": "https://www.threads.com/share/BAXacavYEN/",
+    "tags": []
+  },
+  {
+    "id": "reddit-1xfbqdp",
+    "title": "Deux manifestants et des street medics frappés à Strasbourg",
+    "description": "",
+    "date": "Publié le 25 octobre 2026",
+    "city": "Strasbourg",
+    "country": "France",
+    "category": "Manifestation",
+    "status": "Source archivée",
+    "verified": false,
+    "demo": false,
+    "videoUrl": "videos/reddit-1xfbqdp.mp4",
+    "audioUrl": "audio/reddit-1xfbqdp.mp3",
+    "thumbnailUrl": "thumbnails/reddit-1xfbqdp.jpg",
+    "sourceUrl": "https://www.reddit.com/r/france/s/K1XMBiGSwN",
+    "tags": []
   }
 ]
