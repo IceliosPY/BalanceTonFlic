@@ -1003,5 +1003,41 @@
     "thumbnailUrl": "thumbnails/upload-20261027-quai-manifestation.jpg",
     "sourceUrl": "",
     "tags": []
+  },
+  {
+    "id": "upload-20261027-terrasse-manifestation",
+    "addedAt": "2026-10-27T16:43:02Z",
+    "title": "Manifestants repoussés par des policiers près d’une terrasse",
+    "description": "",
+    "date": "Date non précisée",
+    "city": "Lieu non précisé",
+    "country": "France",
+    "category": "Manifestation",
+    "status": "Source archivée",
+    "verified": false,
+    "demo": false,
+    "videoUrl": "videos/upload-20261027-terrasse-manifestation.mp4",
+    "audioUrl": "audio/upload-20261027-terrasse-manifestation.mp3",
+    "thumbnailUrl": "thumbnails/upload-20261027-terrasse-manifestation.jpg",
+    "sourceUrl": "",
+    "tags": []
+  },
+  {
+    "id": "upload-20261027-maintien-sol-nuit",
+    "addedAt": "2026-10-27T16:43:01Z",
+    "title": "Personnes maintenues au sol lors d’une intervention de nuit",
+    "description": "",
+    "date": "Date non précisée",
+    "city": "Lieu non précisé",
+    "country": "France",
+    "category": "Interpellation",
+    "status": "Source archivée",
+    "verified": false,
+    "demo": false,
+    "videoUrl": "videos/upload-20261027-maintien-sol-nuit.mp4",
+    "audioUrl": "audio/upload-20261027-maintien-sol-nuit.mp3",
+    "thumbnailUrl": "thumbnails/upload-20261027-maintien-sol-nuit.jpg",
+    "sourceUrl": "",
+    "tags": []
   }
 ]
