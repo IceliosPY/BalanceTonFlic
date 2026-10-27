@@ -76,6 +76,10 @@ export class ObservatoryComponent {
       this.selected.set(incident);
       this.linkCopied.set(false);
       if (!this.dialog().nativeElement.open) this.dialog().nativeElement.showModal();
+      // Old links used `?v=…`. Keep them working, but expose the dedicated
+      // static share page in the address bar so copied links get rich previews.
+      const shareUrl = videoShareUrl(window.location.href, incident.id);
+      if (window.location.href !== shareUrl) window.history.replaceState({}, '', shareUrl);
       return;
     }
 
