@@ -10,12 +10,28 @@
   } @else if (loadError()) {
     <p class="empty-state">Les archives sont momentanément indisponibles.</p>
   } @else {
-    <div class="incident-grid">
-      @for (incident of incidents(); track incident.id; let index = $index) {
+    <div class="archive-controls">
+      <label for="video-search">Rechercher une vidéo</label>
+      <input
+        id="video-search"
+        type="search"
+        placeholder="Titre, ville ou pays"
+        autocomplete="off"
+        [value]="search()"
+        (input)="updateSearch($event)"
+      >
+      <p aria-live="polite">{{ filteredIncidents().length }} vidéo@if (filteredIncidents().length !== 1) {s}</p>
+    </div>
+
+    @if (filteredIncidents().length === 0) {
+      <p class="empty-state">Aucune vidéo ne correspond à cette recherche.</p>
+    } @else {
+      <div class="incident-grid">
+      @for (incident of visibleIncidents(); track incident.id; let index = $index) {
         <article class="incident-card" tabindex="0" role="button" [attr.aria-label]="'Voir la vidéo : ' + incident.title" (click)="openIncident(incident)" (keydown.enter)="openIncident(incident)" (keydown.space)="$event.preventDefault(); openIncident(incident)">
           <div class="card-media">
             <img [src]="incident.thumbnailUrl" alt="" loading="lazy">
-            <span class="card-index">{{ (index + 1).toString().padStart(2, '0') }}</span>
+            <span class="card-index">{{ ((currentPage() - 1) * pageSize + index + 1).toString().padStart(2, '0') }}</span>
             <span class="play-mark" aria-hidden="true">▶</span>
           </div>
           <div class="card-body">
@@ -25,7 +41,26 @@
           </div>
         </article>
       }
-    </div>
+      </div>
+
+      @if (totalPages() > 1) {
+        <nav class="pagination" aria-label="Pagination des vidéos">
+          <button type="button" (click)="goToPage(currentPage() - 1)" [disabled]="currentPage() === 1">← Précédent</button>
+          <div class="pagination-pages">
+            @for (page of pages(); track page) {
+              <button
+                type="button"
+                (click)="goToPage(page)"
+                [class.is-current]="page === currentPage()"
+                [attr.aria-current]="page === currentPage() ? 'page' : null"
+                [attr.aria-label]="'Page ' + page"
+              >{{ page }}</button>
+            }
+          </div>
+          <button type="button" (click)="goToPage(currentPage() + 1)" [disabled]="currentPage() === totalPages()">Suivant →</button>
+        </nav>
+      }
+    }
   }
 </section>
 

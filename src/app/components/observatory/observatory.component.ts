@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, inject, signal, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, computed, inject, signal, viewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { fromEvent } from 'rxjs';
 import { sortIncidentsNewestFirst } from '../../models/incident-date';
 import { pageUrlWithoutVideo, videoCodeFromUrl, videoShareUrl } from '../../models/incident-share';
 import { Incident } from '../../models/incident';
 import { IncidentService } from '../../services/incident.service';
+import { filterIncidents, paginateIncidents } from './incident-filter';
 
 @Component({
   selector: 'btf-observatory',
@@ -21,6 +22,21 @@ export class ObservatoryComponent {
   readonly loadError = signal(false);
   readonly selected = signal<Incident | null>(null);
   readonly linkCopied = signal(false);
+  readonly search = signal('');
+  readonly currentPage = signal(1);
+  readonly pageSize = 10;
+  readonly filteredIncidents = computed(() => filterIncidents(this.incidents(), {
+    search: this.search(),
+    country: 'all',
+    category: 'all'
+  }));
+  readonly totalPages = computed(() => Math.max(1, Math.ceil(this.filteredIncidents().length / this.pageSize)));
+  readonly pages = computed(() => Array.from({ length: this.totalPages() }, (_, index) => index + 1));
+  readonly visibleIncidents = computed(() => paginateIncidents(
+    this.filteredIncidents(),
+    this.currentPage(),
+    this.pageSize
+  ));
 
   constructor() {
     this.incidentService.getIncidents().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
@@ -67,6 +83,18 @@ export class ObservatoryComponent {
   }
 
   isDirectVideo(url: string): boolean { return /\.(mp4|webm)(\?.*)?$/i.test(url); }
+
+  updateSearch(event: Event): void {
+    this.search.set((event.target as HTMLInputElement).value);
+    this.currentPage.set(1);
+  }
+
+  goToPage(page: number): void {
+    const nextPage = Math.min(Math.max(1, page), this.totalPages());
+    if (nextPage === this.currentPage()) return;
+    this.currentPage.set(nextPage);
+    document.getElementById('observatoire')?.scrollIntoView({ behavior: 'smooth' });
+  }
 
   private syncDialogWithUrl(): void {
     const code = videoCodeFromUrl(window.location.href);

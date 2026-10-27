@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { Incident } from '../../models/incident';
-import { filterIncidents } from './incident-filter';
+import { filterIncidents, paginateIncidents } from './incident-filter';
 
 const incidents: readonly Incident[] = [
   {
@@ -26,5 +26,18 @@ describe('filterIncidents', () => {
 
   it('renvoie une liste vide lorsque rien ne correspond', () => {
     expect(filterIncidents(incidents, { search: 'introuvable', country: 'all', category: 'all' })).toEqual([]);
+  });
+});
+
+describe('paginateIncidents', () => {
+  const values = Array.from({ length: 23 }, (_, index) => ({ ...incidents[0], id: String(index + 1) }));
+
+  it('affiche dix éléments par page', () => {
+    expect(paginateIncidents(values, 1, 10).map(({ id }) => id)).toEqual(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']);
+    expect(paginateIncidents(values, 2, 10).map(({ id }) => id)).toEqual(['11', '12', '13', '14', '15', '16', '17', '18', '19', '20']);
+  });
+
+  it('conserve les derniers éléments sur la dernière page', () => {
+    expect(paginateIncidents(values, 3, 10).map(({ id }) => id)).toEqual(['21', '22', '23']);
   });
 });
