@@ -715,5 +715,41 @@
     "thumbnailUrl": "thumbnails/upload-20261024-bordeaux.jpg",
     "sourceUrl": "",
     "tags": []
+  },
+  {
+    "id": "upload-20261024-montpellier-agression",
+    "addedAt": "2026-10-27T16:22:02Z",
+    "title": "Agression commise par un groupe néonazi lors d’une intervention policière à Montpellier",
+    "description": "",
+    "date": "Publié le 24 octobre 2026",
+    "city": "Montpellier",
+    "country": "France",
+    "category": "Intervention",
+    "status": "Source archivée",
+    "verified": false,
+    "demo": false,
+    "videoUrl": "videos/upload-20261024-montpellier-agression.mp4",
+    "audioUrl": "audio/upload-20261024-montpellier-agression.mp3",
+    "thumbnailUrl": "thumbnails/upload-20261024-montpellier-agression.jpg",
+    "sourceUrl": "",
+    "tags": []
+  },
+  {
+    "id": "upload-20261024-paris-vincennes",
+    "addedAt": "2026-10-27T16:22:01Z",
+    "title": "Intervention policière et mouvement de foule à la porte de Vincennes",
+    "description": "",
+    "date": "Publié le 24 octobre 2026",
+    "city": "Paris",
+    "country": "France",
+    "category": "Manifestation",
+    "status": "Source archivée",
+    "verified": false,
+    "demo": false,
+    "videoUrl": "videos/upload-20261024-paris-vincennes.mp4",
+    "audioUrl": "audio/upload-20261024-paris-vincennes.mp3",
+    "thumbnailUrl": "thumbnails/upload-20261024-paris-vincennes.jpg",
+    "sourceUrl": "",
+    "tags": []
   }
 ]
