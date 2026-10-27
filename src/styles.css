@@ -79,11 +79,10 @@ button, input, select { font: inherit; }
 .observatory { padding-block: 100px 120px; }
 .archive-heading { padding-bottom: 28px; border-bottom: 2px solid var(--black); }
 .archive-heading h2 { font-size: clamp(4rem, 8vw, 7.5rem); line-height: .82; }
-.archive-controls { display: grid; grid-template-columns: minmax(0, 520px) auto; align-items: end; gap: 8px 24px; padding-top: 28px; }
+.archive-controls { display: grid; grid-template-columns: minmax(0, 520px); gap: 8px; padding-top: 28px; }
 .archive-controls label { grid-column: 1; font-size: .7rem; font-weight: 900; text-transform: uppercase; letter-spacing: .1em; }
 .archive-controls input { grid-column: 1; min-width: 0; height: 52px; padding: 0 16px; border: 1px solid var(--black); border-radius: 0; background: var(--white); color: var(--black); }
 .archive-controls input::placeholder { color: var(--muted); }
-.archive-controls p { grid-column: 2; grid-row: 2; margin: 0 0 14px; color: var(--muted); font-size: .72rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
 .incident-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 38px 24px; padding-top: 28px; }
 .incident-card { min-width: 0; background: var(--white); border: 1px solid var(--line); cursor: pointer; transition: transform .18s ease, box-shadow .18s ease; }
 .incident-card:hover { transform: translateY(-4px); box-shadow: 7px 7px 0 var(--red); }
@@ -108,6 +107,8 @@ button, input, select { font: inherit; }
 .pagination button:disabled { opacity: .35; cursor: not-allowed; }
 .pagination-pages { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; }
 .pagination-pages button { min-width: 42px; padding-inline: 8px; }
+.pagination-top { margin-top: 28px; padding: 0 0 22px; border-top: 0; border-bottom: 2px solid var(--black); }
+.pagination-top + .incident-grid { padding-top: 28px; }
 
 .site-footer { display: flex; justify-content: space-between; align-items: center; gap: 35px; padding: 20px max(24px, calc((100vw - var(--max)) / 2)); background: var(--black); color: #aaa59d; font-size: .76rem; }
 .site-footer p { margin: 0; }
@@ -142,7 +143,6 @@ button, input, select { font: inherit; }
   .observatory { padding-block: 76px 82px; }
   .archive-heading h2 { font-size: clamp(4rem, 19vw, 6rem); }
   .archive-controls { grid-template-columns: 1fr; }
-  .archive-controls p { grid-column: 1; grid-row: auto; margin: 4px 0 0; }
   .incident-grid { grid-template-columns: 1fr; gap: 24px; }
   .pagination { grid-template-columns: 1fr 1fr; gap: 14px 10px; }
   .pagination-pages { grid-column: 1 / -1; grid-row: 1; }

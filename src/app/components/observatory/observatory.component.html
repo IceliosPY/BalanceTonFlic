@@ -20,12 +20,29 @@
         [value]="search()"
         (input)="updateSearch($event)"
       >
-      <p aria-live="polite">{{ filteredIncidents().length }} vidéo@if (filteredIncidents().length !== 1) {s}</p>
     </div>
 
     @if (filteredIncidents().length === 0) {
       <p class="empty-state">Aucune vidéo ne correspond à cette recherche.</p>
     } @else {
+      @if (totalPages() > 1) {
+        <nav class="pagination pagination-top" aria-label="Pagination supérieure des vidéos">
+          <button type="button" (click)="goToPage(currentPage() - 1)" [disabled]="currentPage() === 1">← Précédent</button>
+          <div class="pagination-pages">
+            @for (page of pages(); track page) {
+              <button
+                type="button"
+                (click)="goToPage(page)"
+                [class.is-current]="page === currentPage()"
+                [attr.aria-current]="page === currentPage() ? 'page' : null"
+                [attr.aria-label]="'Page ' + page"
+              >{{ page }}</button>
+            }
+          </div>
+          <button type="button" (click)="goToPage(currentPage() + 1)" [disabled]="currentPage() === totalPages()">Suivant →</button>
+        </nav>
+      }
+
       <div class="incident-grid">
       @for (incident of visibleIncidents(); track incident.id; let index = $index) {
         <article class="incident-card" tabindex="0" role="button" [attr.aria-label]="'Voir la vidéo : ' + incident.title" (click)="openIncident(incident)" (keydown.enter)="openIncident(incident)" (keydown.space)="$event.preventDefault(); openIncident(incident)">
@@ -44,7 +61,7 @@
       </div>
 
       @if (totalPages() > 1) {
-        <nav class="pagination" aria-label="Pagination des vidéos">
+        <nav class="pagination" aria-label="Pagination inférieure des vidéos">
           <button type="button" (click)="goToPage(currentPage() - 1)" [disabled]="currentPage() === 1">← Précédent</button>
           <div class="pagination-pages">
             @for (page of pages(); track page) {
