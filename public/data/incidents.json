@@ -627,5 +627,39 @@
     "thumbnailUrl": "thumbnails/reddit-1xfbqdp.jpg",
     "sourceUrl": "https://www.reddit.com/r/france/s/K1XMBiGSwN",
     "tags": []
+  },
+  {
+    "id": "upload-20261024-montpellier",
+    "title": "Charge policière contre des manifestants à Montpellier",
+    "description": "",
+    "date": "Publié le 24 octobre 2026",
+    "city": "Montpellier",
+    "country": "France",
+    "category": "Manifestation",
+    "status": "Source archivée",
+    "verified": false,
+    "demo": false,
+    "videoUrl": "videos/upload-20261024-montpellier.mp4",
+    "audioUrl": "audio/upload-20261024-montpellier.mp3",
+    "thumbnailUrl": "thumbnails/upload-20261024-montpellier.jpg",
+    "sourceUrl": "",
+    "tags": []
+  },
+  {
+    "id": "upload-20261024-nancy",
+    "title": "Charge policière devant des familles à Nancy",
+    "description": "",
+    "date": "Publié le 24 octobre 2026",
+    "city": "Nancy",
+    "country": "France",
+    "category": "Manifestation",
+    "status": "Source archivée",
+    "verified": false,
+    "demo": false,
+    "videoUrl": "videos/upload-20261024-nancy.mp4",
+    "audioUrl": "audio/upload-20261024-nancy.mp3",
+    "thumbnailUrl": "thumbnails/upload-20261024-nancy.jpg",
+    "sourceUrl": "",
+    "tags": []
   }
 ]

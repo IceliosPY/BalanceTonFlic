@@ -7,7 +7,9 @@
         <div class="latest-content">
           <p class="latest-meta">{{ incident.date }} · {{ incident.city }}</p>
           <h2 id="latest-clip-title">{{ incident.title }}</h2>
-          <a [href]="incident.sourceUrl" target="_blank" rel="noreferrer">Source originale <span aria-hidden="true">→</span></a>
+          @if (incident.sourceUrl) {
+            <a [href]="incident.sourceUrl" target="_blank" rel="noreferrer">Source originale <span aria-hidden="true">→</span></a>
+          }
         </div>
       </article>
     }

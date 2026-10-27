@@ -42,7 +42,9 @@
       <h2 id="dialog-title">{{ incident.title }}</h2>
       <div class="dialog-actions">
         <a class="button button-primary" [href]="incident.audioUrl" download>Télécharger l’audio ↓</a>
-        <a class="button button-outline" [href]="incident.sourceUrl" target="_blank" rel="noreferrer">Source originale ↗</a>
+        @if (incident.sourceUrl) {
+          <a class="button button-outline" [href]="incident.sourceUrl" target="_blank" rel="noreferrer">Source originale ↗</a>
+        }
       </div>
     </div>
   }
