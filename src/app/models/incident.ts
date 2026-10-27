@@ -1,5 +1,6 @@
 export interface Incident {
   readonly id: string;
+  readonly addedAt?: string;
   readonly title: string;
   readonly description: string;
   readonly date: string;

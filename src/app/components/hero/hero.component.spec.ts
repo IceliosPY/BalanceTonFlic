@@ -44,4 +44,14 @@ describe('latestIncident', () => {
     expect(sortIncidentsNewestFirst(source)).toEqual([latest, middle, older]);
     expect(source).toEqual([older, latest, middle]);
   });
+
+  it('place les nouveaux imports en tête dans leur ordre d’ajout', () => {
+    const recentlyPublished = incident('recently-published', 'Publié le 26 octobre 2026');
+    const firstUpload = { ...incident('first-upload', 'Publié le 2 octobre 2026'), addedAt: '2026-10-27T15:48:01Z' };
+    const secondUpload = { ...incident('second-upload', 'Publié le 3 octobre 2026'), addedAt: '2026-10-27T15:48:02Z' };
+
+    expect(sortIncidentsNewestFirst([recentlyPublished, firstUpload, secondUpload]))
+      .toEqual([secondUpload, firstUpload, recentlyPublished]);
+    expect(latestIncident([recentlyPublished, firstUpload, secondUpload])).toBe(secondUpload);
+  });
 });

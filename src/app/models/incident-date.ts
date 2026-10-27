@@ -26,10 +26,19 @@ export function publicationTime(value: string): number {
 export function latestIncident(incidents: readonly Incident[]): Incident | null {
   return incidents.reduce<Incident | null>((latest, incident) => {
     if (!latest) return incident;
-    return publicationTime(incident.date) >= publicationTime(latest.date) ? incident : latest;
+    return archiveTime(incident) >= archiveTime(latest) ? incident : latest;
   }, null);
 }
 
 export function sortIncidentsNewestFirst(incidents: readonly Incident[]): readonly Incident[] {
-  return [...incidents].sort((left, right) => publicationTime(right.date) - publicationTime(left.date));
+  return [...incidents].sort((left, right) => archiveTime(right) - archiveTime(left));
+}
+
+function archiveTime(incident: Incident): number {
+  if (incident.addedAt) {
+    const addedAt = Date.parse(incident.addedAt);
+    if (!Number.isNaN(addedAt)) return addedAt;
+  }
+
+  return publicationTime(incident.date);
 }
