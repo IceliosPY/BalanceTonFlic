@@ -109,10 +109,12 @@ button, input, select { font: inherit; }
 .dialog-media video { display: block; width: 100%; max-height: 56vh; background: var(--black); }
 .dialog-content { padding: 32px; }
 .dialog-content h2 { max-width: 720px; margin: 0 0 16px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2rem, 5vw, 3.3rem); line-height: 1.05; }
+.video-code { margin: 0 0 20px; color: var(--muted); font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+.video-code code { color: var(--black); font-size: .72rem; text-transform: none; }
 .dialog-actions { display: flex; flex-wrap: wrap; gap: 10px; }
 .button { display: inline-flex; justify-content: center; min-width: 215px; padding: 13px 17px; font-size: .7rem; font-weight: 900; text-decoration: none; text-transform: uppercase; letter-spacing: .08em; }
 .button-primary { background: var(--red); color: var(--white); border: 1px solid var(--red); }
-.button-outline { border: 1px solid var(--black); }
+.button-outline { border: 1px solid var(--black); background: transparent; color: var(--black); cursor: pointer; }
 
 @media (max-width: 760px) {
   .section-shell { width: min(var(--max), calc(100% - 30px)); }

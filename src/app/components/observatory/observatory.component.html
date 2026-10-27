@@ -29,7 +29,7 @@
   }
 </section>
 
-<dialog #dialog class="incident-dialog" aria-labelledby="dialog-title" (click)="closeOnBackdrop($event)" (close)="selected.set(null)">
+<dialog #dialog class="incident-dialog" aria-labelledby="dialog-title" (click)="closeOnBackdrop($event)" (close)="handleDialogClosed()">
   @if (selected(); as incident) {
     <button class="dialog-close" type="button" aria-label="Fermer" (click)="closeDialog()">×</button>
     <div class="dialog-media">
@@ -40,10 +40,14 @@
     <div class="dialog-content">
       <p class="card-meta">@if (incident.country) { {{ incident.country }} · }{{ incident.city }} · {{ incident.date }}</p>
       <h2 id="dialog-title">{{ incident.title }}</h2>
+      <p class="video-code">Code vidéo <code>{{ incident.id }}</code></p>
       <div class="dialog-actions">
+        <button class="button button-outline" type="button" (click)="copyShareLink(incident)">
+          {{ linkCopied() ? 'Lien copié ✓' : 'Copier le lien' }}
+        </button>
         <a class="button button-primary" [href]="incident.audioUrl" download>Télécharger l’audio ↓</a>
         @if (incident.sourceUrl) {
-          <a class="button button-outline" [href]="incident.sourceUrl" target="_blank" rel="noreferrer">Source originale ↗</a>
+          <a class="button button-outline" [href]="incident.sourceUrl" target="_blank" rel="noreferrer">Source originale →</a>
         }
       </div>
     </div>
