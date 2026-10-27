@@ -4,8 +4,12 @@
   "private": true,
   "scripts": {
     "ng": "ng",
+    "generate:shares": "node scripts/generate-share-pages.mjs",
+    "prestart": "npm run generate:shares",
     "start": "ng serve",
+    "prebuild": "npm run generate:shares",
     "build": "ng build",
+    "prebuild:pages": "npm run generate:shares",
     "build:pages": "ng build --base-href /BalanceTonFlic/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

@@ -6,13 +6,23 @@ describe('incident share links', () => {
     expect(videoCodeFromUrl('https://example.test/BalanceTonFlic/?v=reddit-1xfbqdp')).toBe('reddit-1xfbqdp');
   });
 
-  it('construit un lien partageable en conservant les autres paramètres', () => {
+  it('lit également le code dans une page de partage', () => {
+    expect(videoCodeFromUrl('https://example.test/BalanceTonFlic/v/upload-20261024-nancy/'))
+      .toBe('upload-20261024-nancy');
+  });
+
+  it('construit une page de partage dédiée', () => {
     expect(videoShareUrl('https://example.test/BalanceTonFlic/?lang=fr#observatoire', 'upload-20261024-nancy'))
-      .toBe('https://example.test/BalanceTonFlic/?lang=fr&v=upload-20261024-nancy');
+      .toBe('https://example.test/BalanceTonFlic/v/upload-20261024-nancy/');
   });
 
   it('retire uniquement le code vidéo à la fermeture', () => {
     expect(pageUrlWithoutVideo('https://example.test/BalanceTonFlic/?lang=fr&v=reddit-1xfbqdp'))
       .toBe('https://example.test/BalanceTonFlic/?lang=fr');
+  });
+
+  it('revient à la racine depuis une page de partage', () => {
+    expect(pageUrlWithoutVideo('https://example.test/BalanceTonFlic/v/reddit-1xfbqdp/'))
+      .toBe('https://example.test/BalanceTonFlic/');
   });
 });

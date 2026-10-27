@@ -1,6 +1,7 @@
 # Angular / Node
 /node_modules
 /dist
+/public/v
 /.angular
 /.npm-cache
 npm-debug.log*
