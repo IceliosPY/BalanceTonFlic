@@ -137,7 +137,8 @@ button, input, select { font: inherit; }
 .submission-inner h1 { margin: 0; font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif; font-size: clamp(4rem, 5.5vw, 5.5rem); line-height: .83; text-transform: uppercase; letter-spacing: -.025em; }
 .submission-panel { padding-top: 26px; border-top: 3px solid var(--red); }
 .submission-panel > p:first-child { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.25rem, 2vw, 1.65rem); line-height: 1.45; }
-.submission-placeholder { display: inline-flex; margin-top: 30px; padding: 14px 18px; background: #d5d0c7; color: #716c64; font-size: .7rem; font-weight: 900; text-transform: uppercase; letter-spacing: .08em; cursor: not-allowed; }
+.submission-button { display: inline-flex; gap: 8px; margin-top: 30px; padding: 14px 18px; background: var(--red); color: var(--white); font-size: .7rem; font-weight: 900; text-decoration: none; text-transform: uppercase; letter-spacing: .08em; }
+.submission-button:hover { background: var(--black); }
 .submission-note { margin: 18px 0 0; color: var(--muted); font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
 
 .site-footer { display: flex; justify-content: space-between; align-items: center; gap: 35px; padding: 20px max(24px, calc((100vw - var(--max)) / 2)); background: var(--black); color: #aaa59d; font-size: .76rem; }
