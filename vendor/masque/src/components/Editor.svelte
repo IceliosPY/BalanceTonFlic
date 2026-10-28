@@ -1,0 +1,298 @@
+<script lang="ts">
+  import { formatPercent, t } from "../lib/i18n.svelte.ts";
+  import {
+    applyMasks,
+    type Box,
+    type MaskOptions,
+  } from "../lib/anonymize/render.ts";
+  import type { Face } from "../lib/faces.ts";
+
+  let {
+    bitmap,
+    faces,
+    options,
+    selected = $bindable(),
+    onadd,
+    onchange,
+    onremove,
+  }: {
+    bitmap: ImageBitmap;
+    faces: Face[];
+    options: MaskOptions;
+    selected?: number;
+    /** Returns the new mask's id. */
+    onadd: (box: Box) => number;
+    onchange: (id: number, box: Box) => void;
+    onremove: (id: number) => void;
+  } = $props();
+
+  const HANDLE = 12; // CSS pixels
+
+  let canvas: HTMLCanvasElement;
+  let hovered = $state<number>();
+  /** Masks under another one are neither drawn nor outlined, so pointers must not grab them. */
+  let drawn: boolean[] = [];
+  let drag:
+    | ({ pointer: number; x: number; y: number } & (
+        | { kind: "new"; id?: number }
+        | { kind: "move" | "resize"; id: number; orig: Box }
+      ))
+    | undefined;
+
+  $effect(() => {
+    canvas.width = bitmap.width;
+    canvas.height = bitmap.height;
+    const ctx = canvas.getContext("2d")!;
+    ctx.drawImage(bitmap, 0, 0);
+    drawn = applyMasks(ctx, faces, options, bitmap);
+
+    const px = pixelRatio();
+    ctx.lineWidth = 2 * px;
+    for (const [i, f] of faces.entries()) {
+      if (!drawn[i] && f.id !== selected) continue;
+      ctx.strokeStyle =
+        f.id === selected ? "#facc15" : f.manual ? "#60a5fa" : "#f87171";
+      ctx.strokeRect(f.x1, f.y1, f.x2 - f.x1, f.y2 - f.y1);
+      if (f.id === selected) {
+        ctx.fillStyle = "#facc15";
+        ctx.fillRect(
+          f.x2 - HANDLE * px,
+          f.y2 - HANDLE * px,
+          HANDLE * px,
+          HANDLE * px,
+        );
+      }
+    }
+  });
+
+  /** Image pixels per CSS pixel. */
+  const pixelRatio = () =>
+    canvas.width / (canvas.getBoundingClientRect().width || canvas.width);
+
+  function point(e: PointerEvent) {
+    const r = canvas.getBoundingClientRect();
+    return {
+      x: ((e.clientX - r.left) * canvas.width) / r.width,
+      y: ((e.clientY - r.top) * canvas.height) / r.height,
+    };
+  }
+
+  function hit(x: number, y: number) {
+    // Topmost first: the last drawn box wins.
+    for (let i = faces.length - 1; i >= 0; i--) {
+      const f = faces[i];
+      if (!drawn[i] && f.id !== selected) continue;
+      if (x >= f.x1 && x <= f.x2 && y >= f.y1 && y <= f.y2) return f;
+    }
+  }
+
+  function pointerdown(e: PointerEvent) {
+    // A second finger starts a pinch, which the browser turns into a zoom.
+    if (drag && drag.pointer !== e.pointerId) return cancel();
+    canvas.setPointerCapture(e.pointerId);
+    const { x, y } = point(e);
+    const face = hit(x, y);
+    if (!face) {
+      selected = undefined;
+      drag = { kind: "new", pointer: e.pointerId, x, y };
+      return;
+    }
+    selected = face.id;
+    const h = HANDLE * pixelRatio();
+    const kind = x >= face.x2 - h && y >= face.y2 - h ? "resize" : "move";
+    drag = {
+      kind,
+      pointer: e.pointerId,
+      x,
+      y,
+      id: face.id,
+      orig: { x1: face.x1, y1: face.y1, x2: face.x2, y2: face.y2 },
+    };
+  }
+
+  function pointermove(e: PointerEvent) {
+    const d = drag;
+    const { x, y } = point(e);
+    if (!d) {
+      hovered = hit(x, y)?.id;
+      return;
+    }
+    if (d.kind === "new") {
+      const box = {
+        x1: Math.min(d.x, x),
+        y1: Math.min(d.y, y),
+        x2: Math.max(d.x, x),
+        y2: Math.max(d.y, y),
+      };
+      if (d.id !== undefined) onchange(d.id, box);
+      else if (box.x2 - box.x1 > 4 && box.y2 - box.y1 > 4)
+        d.id = selected = onadd(box);
+      return;
+    }
+    const dx = x - d.x;
+    const dy = y - d.y;
+    const { orig } = d;
+    onchange(
+      d.id,
+      d.kind === "move"
+        ? {
+            x1: orig.x1 + dx,
+            y1: orig.y1 + dy,
+            x2: orig.x2 + dx,
+            y2: orig.y2 + dy,
+          }
+        : {
+            ...orig,
+            x2: Math.max(orig.x1 + 4, orig.x2 + dx),
+            y2: Math.max(orig.y1 + 4, orig.y2 + dy),
+          },
+    );
+  }
+
+  /** Undoes the gesture in progress. */
+  function cancel() {
+    const d = drag;
+    drag = undefined;
+    if (d?.kind === "new") {
+      if (d.id !== undefined) remove(d.id);
+    } else if (d) onchange(d.id, d.orig);
+  }
+
+  function remove(id: number) {
+    if (selected === id) selected = undefined;
+    onremove(id);
+  }
+
+  function keydown(e: KeyboardEvent) {
+    if (selected === undefined) return;
+    if (e.key === "Delete" || e.key === "Backspace") {
+      e.preventDefault();
+      remove(selected);
+    } else if (e.key === "Escape") selected = undefined;
+  }
+</script>
+
+<!-- Sized to the image's aspect ratio so overlay positions in percent match canvas pixels. -->
+<div
+  class="stage"
+  style:aspect-ratio="{bitmap.width} / {bitmap.height}"
+  style:width="min(100%, {bitmap.width}px, calc(75vh * {bitmap.width} / {bitmap.height}))"
+>
+  <canvas
+    bind:this={canvas}
+    tabindex="0"
+    aria-label={t("editorLabel")}
+    onpointerdown={pointerdown}
+    onpointermove={pointermove}
+    onpointerup={() => (drag = undefined)}
+    onpointercancel={cancel}
+    onpointerleave={(e) => {
+      if (!(
+        e.relatedTarget instanceof Element && e.relatedTarget.closest(".remove")
+      ))
+        hovered = undefined;
+    }}
+    onkeydown={keydown}
+  ></canvas>
+  {#each faces.filter((f) => f.id === selected || f.id === hovered) as f (f.id)}
+    <button
+      type="button"
+      class="remove"
+      style:left="min({(f.x2 / bitmap.width) * 100}%, 100% - 1.3125rem)"
+      style:top="{(f.y1 / bitmap.height) * 100}%"
+      aria-label={t("removeMask")}
+      onclick={() => remove(f.id)}>×</button
+    >
+  {/each}
+</div>
+
+<p class="hint">{t("drawHint")}</p>
+
+<details>
+  <summary>{t("masks", faces.length)}</summary>
+  <ul>
+    {#each faces as f, i (f.id)}
+      <li
+        data-box={[f.x1, f.y1, f.x2, f.y2, f.score]
+          .map((v) => v.toFixed(3))
+          .join(",")}
+        class:selected={f.id === selected}
+      >
+        <button type="button" class="link" onclick={() => (selected = f.id)}>
+          {f.manual
+            ? t("manualMask")
+            : t("face", i + 1, formatPercent(f.score))}
+        </button>
+        <button
+          type="button"
+          aria-label={t("removeMaskN", i + 1)}
+          onclick={() => remove(f.id)}>{t("remove")}</button
+        >
+      </li>
+    {/each}
+  </ul>
+</details>
+
+<style>
+  .stage {
+    position: relative;
+    margin: 0 auto;
+    /* On touch screens, a long press would select the page or open the copy menu instead of drawing. */
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+
+  canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    touch-action: pinch-zoom;
+    cursor: crosshair;
+  }
+
+  .remove {
+    position: absolute;
+    /* Mostly outside the box: on a small screen the cross is larger than the face it removes. */
+    translate: -25% -75%;
+    width: 1.75rem;
+    height: 1.75rem;
+    padding: 0;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background: var(--danger);
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: bold;
+    line-height: 1;
+  }
+
+  .hint {
+    margin: 0.5rem 0 0;
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.125rem 0;
+  }
+
+  li.selected {
+    font-weight: bold;
+  }
+
+  .link {
+    background: none;
+    border: 0;
+    padding: 0;
+    color: inherit;
+    cursor: pointer;
+  }
+</style>

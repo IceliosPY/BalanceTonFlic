@@ -1,5 +1,6 @@
 # Angular / Node
 /node_modules
+/vendor/masque/node_modules
 /dist
 /public/v
 /.angular

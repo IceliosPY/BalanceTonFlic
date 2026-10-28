@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "ng": "ng",
+    "build:masque": "npm run build --prefix vendor/masque",
     "generate:shares": "node scripts/generate-share-pages.mjs",
     "prestart": "npm run generate:shares",
     "start": "ng serve",
