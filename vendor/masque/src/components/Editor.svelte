@@ -241,6 +241,9 @@
     -webkit-user-select: none;
     user-select: none;
     -webkit-touch-callout: none;
+    border: 1px solid var(--fg);
+    background: #0b0b0b;
+    box-shadow: 7px 7px 0 var(--accent);
   }
 
   canvas {
@@ -268,9 +271,24 @@
   }
 
   .hint {
-    margin: 0.5rem 0 0;
-    font-size: 0.875rem;
+    margin: 1rem 0 0;
+    font-size: 0.75rem;
+    font-weight: 700;
     color: var(--muted);
+  }
+
+  details {
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--line);
+  }
+
+  summary {
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    cursor: pointer;
   }
 
   ul {

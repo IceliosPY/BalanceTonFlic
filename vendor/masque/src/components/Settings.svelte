@@ -88,7 +88,18 @@
     gap: 0.75rem;
     /* Fieldsets refuse to shrink below their content by default. */
     min-width: 0;
-    border: 2px solid var(--fg);
+    padding: 1.1rem;
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--fg);
+    background: var(--tint);
+  }
+
+  legend {
+    padding: 0 0.45rem;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
   }
 
   /* Label text on its own row, control and value below: fits narrow sidebars and long translations. */
@@ -97,6 +108,8 @@
     grid-template-columns: 1fr auto;
     align-items: center;
     gap: 0.25rem 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 800;
   }
 
   label > :is(select, input) {

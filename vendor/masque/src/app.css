@@ -1,45 +1,35 @@
-/* Design from onestla.tech: IBM Plex Mono, grey page, white column, ochre accents. */
 :root {
-  --page: #f0f0f0;
-  --surface: #fff;
-  --fg: #404040;
-  --muted: #6b6b6b;
+  --page: #0b0b0b;
+  --surface: #f3efe6;
+  --fg: #0b0b0b;
+  --muted: #68635b;
+  --line: #cbc5ba;
+  --accent: #e10600;
+  --accent-strong: #b90400;
+  --on-accent: #fffdf8;
+  --tint: #fffdf8;
+  --danger: #e10600;
 
-  /* #C77700 is onestla.tech's ochre; too light for small text, so text and buttons use a darker shade. */
-  --accent: #c77700;
-  --accent-strong: #9a5b00;
-  --on-accent: #fff;
-  --tint: rgb(255 217 180 / 40%);
-  --danger: #b91c1c;
-
-  font-family: "IBM Plex Mono", monospace;
-  color-scheme: light dark;
+  font-family: Arial, Helvetica, sans-serif;
+  color-scheme: light;
   color: var(--fg);
   background: var(--page);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --page: #1a1a1a;
-    --surface: #262626;
-    --fg: #f0f0f0;
-    --muted: #a8a8a8;
-    --accent: #e8961c;
-    --accent-strong: #f0a84a;
-    --on-accent: #1a1a1a;
-    --tint: rgb(232 150 28 / 15%);
-    --danger: #f87171;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
   background: var(--page);
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 a {
-  color: var(--accent-strong);
+  color: var(--fg);
+  text-decoration-color: var(--accent);
+  text-underline-offset: 0.2em;
 }
 
 a:hover {
@@ -48,8 +38,9 @@ a:hover {
 
 .workspace {
   display: grid;
-  grid-template-columns: 1fr 22rem;
-  gap: 1.5rem;
+  grid-template-columns: minmax(0, 1fr) 21rem;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  padding-top: 2rem;
 }
 
 @media (width <= 52rem) {
@@ -65,12 +56,24 @@ aside {
 }
 
 button {
-  padding: 0.5rem 1rem;
-  border: 2px solid var(--fg);
+  min-height: 2.75rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--fg);
+  border-radius: 0;
   background: transparent;
   color: inherit;
   font: inherit;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: var(--fg);
+  color: var(--on-accent);
 }
 
 button:disabled {
@@ -79,12 +82,41 @@ button:disabled {
 }
 
 button.primary {
-  background: var(--accent-strong);
-  border-color: var(--accent-strong);
+  background: var(--accent);
+  border-color: var(--accent);
   color: var(--on-accent);
   font-weight: bold;
 }
 
-select {
+button.primary:hover:not(:disabled) {
+  background: var(--fg);
+  border-color: var(--fg);
+}
+
+select,
+input {
   font: inherit;
+}
+
+select {
+  min-height: 2.75rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--fg);
+  border-radius: 0;
+  background: #fffdf8;
+  color: var(--fg);
+}
+
+input[type="range"] {
+  accent-color: var(--accent);
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--accent);
+}
+
+:focus-visible {
+  outline: 3px solid #1769ff;
+  outline-offset: 3px;
 }

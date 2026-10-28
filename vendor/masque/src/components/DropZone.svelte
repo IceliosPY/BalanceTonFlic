@@ -43,17 +43,29 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.5rem;
+    min-height: 23rem;
+    justify-content: center;
     padding: 3rem 1rem;
-    border: 3px dashed var(--accent);
+    border: 2px solid var(--fg);
+    border-top: 8px solid var(--accent);
+    background: var(--tint);
     cursor: pointer;
     text-align: center;
   }
 
   .zone.over,
   .zone:focus-within {
-    border-style: solid;
-    background: var(--tint);
+    background: #ebe4d8;
+    box-shadow: 8px 8px 0 var(--accent);
+  }
+
+  strong {
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 900;
+    line-height: 0.9;
+    text-transform: uppercase;
   }
 
   input {
@@ -65,5 +77,9 @@
 
   span {
     color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
   }
 </style>

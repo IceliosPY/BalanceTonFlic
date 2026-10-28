@@ -95,9 +95,21 @@
 </script>
 
 <main>
-  <a class="btf-back" href="../transmettre/">← Retour à Balance ton flic</a>
+  <nav class="toolbar" aria-label="Navigation de l’outil">
+    <a class="btf-brand" href="../">
+      <img
+        src="/BalanceTonFlic/assets/logo-btf-round.webp"
+        alt=""
+        width="48"
+        height="48"
+      />
+      <span>Balance ton flic</span>
+    </a>
+    <a class="btf-back" href="../transmettre/">← Retour à Transmettre</a>
+  </nav>
   <header>
-    <h1><span class="emoji" aria-hidden="true">🎭</span>Masque</h1>
+    <p class="eyebrow">Outil d’anonymisation local</p>
+    <h1>Masquer les <em>visages</em></h1>
     <p>{t("tagline")}</p>
   </header>
 
@@ -224,11 +236,11 @@
 
 <style>
   main {
-    --gutter: 2rem;
-    max-width: 76rem;
+    --gutter: clamp(1rem, 4vw, 3rem);
+    max-width: 82rem;
     min-height: 100vh;
     margin: 0 auto;
-    padding: 0 var(--gutter) 1.5rem;
+    padding: 0 var(--gutter) 3rem;
     background: var(--surface);
   }
 
@@ -239,36 +251,85 @@
   }
 
   header {
-    text-align: center;
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(17rem, 0.65fr);
+    gap: clamp(1.5rem, 5vw, 5rem);
+    align-items: end;
+    padding: clamp(3.5rem, 8vw, 7rem) 0 clamp(2.5rem, 5vw, 4.5rem);
+    border-bottom: 3px solid var(--fg);
+  }
+
+  .toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    min-height: 5rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .btf-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--fg);
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .btf-brand img {
+    width: 3rem;
+    height: 3rem;
+    object-fit: contain;
   }
 
   .btf-back {
-    display: inline-block;
-    margin-top: 1.25rem;
-    font-size: 0.8rem;
-    font-weight: 700;
+    color: var(--fg);
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .btf-back:hover {
+    color: var(--accent);
   }
 
   h1 {
     margin: 0;
-    padding: 1.5rem 0 0.5rem;
-    font-size: 3rem;
-    font-weight: 400;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: clamp(4rem, 9vw, 8rem);
+    font-weight: 900;
+    letter-spacing: -0.035em;
+    line-height: 0.8;
+    text-transform: uppercase;
   }
 
-  /* System emoji font: the glyph varies by device, which is fine. */
-  .emoji {
-    font-family:
-      "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+  h1 em {
+    color: var(--accent);
+    font-style: normal;
   }
 
-  h1 .emoji {
-    margin-right: 0.5em;
+  .eyebrow {
+    grid-column: 1 / -1;
+    margin: 0 0 -2rem;
+    color: var(--accent);
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
   }
 
   header p {
-    margin-top: 0;
+    margin: 0;
     color: var(--muted);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    line-height: 1.4;
   }
 
   .error {
@@ -277,26 +338,31 @@
   }
 
   .disclaimer {
-    margin: 2rem calc(-1 * var(--gutter)) 0;
-    padding: 1rem var(--gutter);
-    color: var(--accent-strong);
+    margin: 3rem 0 0;
+    padding: 1.25rem 1.5rem;
+    border-left: 6px solid var(--accent);
+    color: var(--fg);
     font-weight: bold;
     background: var(--tint);
   }
 
   footer {
+    margin-top: 4rem;
+    padding-top: 0.5rem;
+    border-top: 3px solid var(--fg);
     font-size: 0.875rem;
   }
 
   h2 {
-    margin: 2rem 0 0.5rem;
-    font-size: 1.25rem;
+    margin: 2.5rem 0 0.75rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.5rem;
   }
 
   h2::after {
     content: "";
     display: block;
-    width: 4rem;
+    width: 3rem;
     margin-top: 0.25rem;
     border-top: 3px solid var(--accent);
   }
@@ -341,7 +407,7 @@
     align-items: center;
     margin-top: 2rem;
     padding-top: 1rem;
-    border-top: 1px solid var(--muted);
+    border-top: 1px solid var(--line);
     color: var(--muted);
   }
 
@@ -356,5 +422,29 @@
 
   .credits summary {
     cursor: pointer;
+  }
+
+  @media (max-width: 46rem) {
+    header {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding-block: 3.5rem 2.5rem;
+    }
+
+    .eyebrow {
+      margin-bottom: 0;
+    }
+
+    h1 {
+      font-size: clamp(3.4rem, 18vw, 5.5rem);
+    }
+
+    .btf-brand span {
+      display: none;
+    }
+
+    .btf-back {
+      text-align: right;
+    }
   }
 </style>
