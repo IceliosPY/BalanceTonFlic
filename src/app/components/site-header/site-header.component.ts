@@ -12,9 +12,11 @@ export class SiteHeaderComponent {
       ? 'about'
       : /\/documentation\/stuff-utile\/?$/.test(window.location.pathname)
         ? 'documentation-stuff'
-        : /\/documentation\/?$/.test(window.location.pathname)
-          ? 'documentation'
-        : /\/transmettre\/?$/.test(window.location.pathname)
-          ? 'submission'
-          : 'home';
+        : /\/documentation\/contacts-ressources\/?$/.test(window.location.pathname)
+          ? 'documentation-resources'
+          : /\/documentation\/?$/.test(window.location.pathname)
+            ? 'documentation'
+            : /\/transmettre\/?$/.test(window.location.pathname)
+              ? 'submission'
+              : 'home';
 }
