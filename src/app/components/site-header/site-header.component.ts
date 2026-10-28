@@ -12,6 +12,10 @@ export class SiteHeaderComponent {
       ? 'about'
       : /\/documentation\/stuff-utile\/?$/.test(window.location.pathname)
         ? 'documentation-stuff'
+        : /\/documentation\/pendant-la-manif\/?$/.test(window.location.pathname)
+          ? 'documentation-protest'
+          : /\/documentation\/questions\/?$/.test(window.location.pathname)
+            ? 'documentation-questions'
         : /\/documentation\/contacts-ressources\/?$/.test(window.location.pathname)
           ? 'documentation-resources'
           : /\/documentation\/?$/.test(window.location.pathname)
