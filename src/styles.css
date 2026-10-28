@@ -158,8 +158,9 @@ button, input, select { font: inherit; }
 .guide-back { display: inline-block; margin-bottom: 54px; font-size: .7rem; font-weight: 900; text-decoration: none; text-transform: uppercase; letter-spacing: .08em; }
 .guide-back:hover { color: var(--red); }
 .guide-header { padding-bottom: 34px; border-bottom: 3px solid var(--black); }
-.guide-header > p { margin: 0 0 14px; color: var(--red); font-family: Impact, sans-serif; font-size: 1.3rem; letter-spacing: .08em; }
+.guide-header > p:first-child { margin: 0 0 14px; color: var(--red); font-family: Impact, sans-serif; font-size: 1.3rem; letter-spacing: .08em; }
 .guide-header h1 { max-width: 850px; margin: 0; font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif; font-size: clamp(3.6rem, 8vw, 7rem); line-height: .84; text-transform: uppercase; letter-spacing: -.025em; }
+.guide-header > p:not(:first-child) { max-width: 620px; margin: 22px 0 0; color: var(--muted); font-size: 1rem; }
 .guide-content { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 42px; }
 .guide-content section { padding-block: 34px; border-bottom: 1px solid var(--line); }
 .guide-content h2 { margin: 0 0 14px; font-family: Georgia, "Times New Roman", serif; font-size: 1.55rem; }
@@ -167,12 +168,13 @@ button, input, select { font: inherit; }
 .guide-content p + p { margin-top: 14px; }
 .guide-content ul { padding-left: 20px; }
 .guide-content li + li { margin-top: 8px; }
-.module-list { display: grid; gap: 18px; padding-top: 34px; }
-.resource-module { padding: clamp(26px, 5vw, 48px); border: 1px solid var(--line); background: var(--white); }
-.module-index { margin: 0 0 38px; color: var(--red); font-size: .68rem; font-weight: 900; text-transform: uppercase; letter-spacing: .1em; }
-.resource-module h2 { margin: 0 0 18px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.8rem, 4vw, 2.7rem); }
-.resource-module > p:not(.module-index) { max-width: 680px; margin: 0; color: var(--muted); }
-.resource-module > a { display: inline-flex; gap: 8px; margin-top: 30px; padding: 13px 17px; border: 1px solid var(--black); font-size: .7rem; font-weight: 900; text-decoration: none; text-transform: uppercase; letter-spacing: .08em; }
+.module-list { display: grid; padding-top: 34px; }
+.resource-module { display: grid; grid-template-columns: 86px minmax(0, 1fr) auto; gap: 12px 26px; align-items: start; padding: 28px 0; border-bottom: 1px solid var(--line); }
+.resource-module:first-child { border-top: 1px solid var(--line); }
+.module-index { grid-column: 1; grid-row: 1 / span 3; margin: 6px 0 0; color: var(--red); font-size: .68rem; font-weight: 900; text-transform: uppercase; letter-spacing: .1em; }
+.resource-module h2 { grid-column: 2; margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.45rem, 3vw, 2rem); line-height: 1.08; }
+.resource-module > p:not(.module-index) { grid-column: 2; max-width: 680px; margin: 0; color: var(--muted); }
+.resource-module > a { display: inline-flex; grid-column: 3; grid-row: 1 / span 2; align-self: center; gap: 8px; margin: 0; padding: 12px 15px; border: 1px solid var(--black); font-size: .7rem; font-weight: 900; text-decoration: none; text-transform: uppercase; letter-spacing: .08em; white-space: nowrap; }
 .resource-module > a:hover { border-color: var(--red); background: var(--red); color: var(--white); }
 
 .site-footer { display: flex; justify-content: space-between; align-items: center; gap: 35px; padding: 20px max(24px, calc((100vw - var(--max)) / 2)); background: var(--black); color: #aaa59d; font-size: .76rem; }
@@ -235,6 +237,10 @@ button, input, select { font: inherit; }
   .guide-back { margin-bottom: 38px; }
   .guide-header h1 { font-size: clamp(3rem, 14vw, 5rem); }
   .guide-content { grid-template-columns: 1fr; }
+  .resource-module { grid-template-columns: 1fr; gap: 12px; padding: 24px 0; }
+  .module-index, .resource-module h2, .resource-module > p:not(.module-index), .resource-module > a { grid-column: 1; grid-row: auto; }
+  .module-index { margin-top: 0; }
+  .resource-module > a { justify-self: start; margin-top: 8px; white-space: normal; }
   .card-body h3 { min-height: 0; }
   .site-footer { display: block; padding-block: 28px; }
   .project-credit img { width: 50px; height: 50px; }
