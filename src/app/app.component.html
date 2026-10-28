@@ -1,10 +1,12 @@
-<a class="skip-link" [href]="isMapPage ? '#carte' : '#observatoire'">
-  {{ isMapPage ? 'Aller à la carte' : 'Aller aux publications' }}
+<a class="skip-link" [href]="currentPage === 'map' ? '#carte' : currentPage === 'about' ? '#a-propos' : '#observatoire'">
+  {{ currentPage === 'map' ? 'Aller à la carte' : currentPage === 'about' ? 'Aller à la présentation' : 'Aller aux publications' }}
 </a>
 <btf-site-header />
 <main id="top">
-  @if (isMapPage) {
+  @if (currentPage === 'map') {
     <btf-police-violence-map />
+  } @else if (currentPage === 'about') {
+    <btf-about />
   } @else {
     <btf-hero />
     <btf-observatory />

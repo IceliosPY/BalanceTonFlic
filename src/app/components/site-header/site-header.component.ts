@@ -6,5 +6,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SiteHeaderComponent {
-  readonly isMapPage = /\/carte\/?$/.test(window.location.pathname);
+  readonly currentPage = /\/carte\/?$/.test(window.location.pathname)
+    ? 'map'
+    : /\/a-propos\/?$/.test(window.location.pathname)
+      ? 'about'
+      : 'home';
 }

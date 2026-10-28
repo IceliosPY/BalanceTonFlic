@@ -4,8 +4,9 @@
     <span>Balance ton flic</span>
   </a>
   <nav class="main-nav" aria-label="Navigation principale">
-    <a href="./#observatoire" [attr.aria-current]="isMapPage ? null : 'page'">Archives</a>
-    <a href="carte/" [attr.aria-current]="isMapPage ? 'page' : null">Carte</a>
+    <a href="./#observatoire" [attr.aria-current]="currentPage === 'home' ? 'page' : null">Archives</a>
+    <a href="carte/" [attr.aria-current]="currentPage === 'map' ? 'page' : null">Carte</a>
+    <a href="a-propos/" [attr.aria-current]="currentPage === 'about' ? 'page' : null">À propos</a>
     <a class="nav-cta" href="https://github.com/IceliosPY/BalanceTonFlic/issues/new" target="_blank" rel="noreferrer">Transmettre</a>
   </nav>
 </header>

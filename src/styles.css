@@ -122,6 +122,15 @@ button, input, select { font: inherit; }
 .map-attribution { margin-top: 14px; color: #a9a9ad; font-size: .7rem; }
 .map-attribution a { color: var(--white); text-underline-offset: 3px; }
 
+.about-page { min-height: calc(100vh - 76px); display: grid; align-items: center; padding-block: clamp(70px, 11vw, 150px); background: var(--black); color: var(--white); border-bottom: 8px solid var(--red); }
+.about-inner { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr); align-items: end; gap: clamp(50px, 9vw, 130px); }
+.about-inner > * { min-width: 0; }
+.about-inner > .kicker { grid-column: 1 / -1; margin-bottom: 0; }
+.about-inner h1 { margin: 0; font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif; font-size: clamp(5rem, 12vw, 10rem); line-height: .8; text-transform: uppercase; letter-spacing: -.025em; }
+.about-copy { padding-top: 22px; border-top: 3px solid var(--red); font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.25rem, 2vw, 1.7rem); line-height: 1.45; }
+.about-copy p { margin: 0; }
+.about-copy p + p { margin-top: 22px; color: #aaa59d; font-family: Arial, Helvetica, sans-serif; font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .07em; }
+
 .site-footer { display: flex; justify-content: space-between; align-items: center; gap: 35px; padding: 20px max(24px, calc((100vw - var(--max)) / 2)); background: var(--black); color: #aaa59d; font-size: .76rem; }
 .site-footer p { margin: 0; }
 .site-footer strong { color: var(--white); text-transform: uppercase; letter-spacing: .06em; }
@@ -167,6 +176,10 @@ button, input, select { font: inherit; }
   .map-relay-header h1 { font-size: clamp(2.6rem, 13vw, 4rem); }
   .map-source-link { display: inline-block; margin-top: 24px; }
   .map-frame-shell { width: 100%; height: 72vh; border-inline: 0; }
+  .about-page { min-height: calc(100vh - 68px); align-items: start; padding-block: 72px 96px; }
+  .about-inner { grid-template-columns: 1fr; gap: 42px; }
+  .about-inner > .kicker { grid-column: auto; margin-bottom: -18px; }
+  .about-inner h1 { font-size: clamp(4.4rem, 21vw, 6rem); }
   .card-body h3 { min-height: 0; }
   .site-footer { display: block; padding-block: 28px; }
   .project-credit img { width: 50px; height: 50px; }
