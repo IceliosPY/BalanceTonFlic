@@ -141,6 +141,12 @@ button, input, select { font: inherit; }
 .submission-button { display: inline-flex; gap: 8px; margin-top: 30px; padding: 14px 18px; background: var(--red); color: var(--white); font-size: .7rem; font-weight: 900; text-decoration: none; text-transform: uppercase; letter-spacing: .08em; }
 .submission-button:hover { background: var(--black); }
 .submission-note { margin: 18px 0 0; color: var(--muted); font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+.submission-tool { margin-top: 36px; padding-top: 26px; border-top: 1px solid var(--line); }
+.submission-tool-label { margin: 0 0 10px; color: var(--red); font-size: .65rem; font-weight: 900; text-transform: uppercase; letter-spacing: .1em; }
+.submission-tool h2 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.3rem, 2vw, 1.65rem); }
+.submission-tool > p:not(.submission-tool-label) { margin: 12px 0 0; color: var(--muted); font-size: .92rem; line-height: 1.45; }
+.submission-tool > a { display: inline-flex; gap: 8px; margin-top: 18px; padding-bottom: 4px; border-bottom: 2px solid var(--red); font-size: .7rem; font-weight: 900; text-decoration: none; text-transform: uppercase; letter-spacing: .08em; }
+.submission-tool > a:hover { color: var(--red); }
 
 .documentation-page { min-height: calc(100vh - 76px); padding-block: clamp(72px, 9vw, 130px); }
 .documentation-inner h1 { margin: 0; padding-bottom: 34px; border-bottom: 3px solid var(--black); font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif; font-size: clamp(4.5rem, 8vw, 8rem); line-height: .82; text-transform: uppercase; letter-spacing: -.025em; }
