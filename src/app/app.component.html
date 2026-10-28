@@ -1,4 +1,4 @@
-<a class="skip-link" [href]="currentPage === 'map' ? '#carte' : currentPage === 'about' ? '#a-propos' : currentPage === 'documentation' ? '#documentation' : currentPage === 'documentation-stuff' ? '#stuff-utile' : currentPage === 'documentation-protest' ? '#pendant-la-manif' : currentPage === 'documentation-questions' ? '#questions' : currentPage === 'documentation-resources' ? '#contacts-ressources' : currentPage === 'submission' ? '#transmettre' : '#observatoire'">
+<a class="skip-link" [href]="currentPage === 'map' ? '#carte' : currentPage === 'about' ? '#a-propos' : currentPage === 'documentation' ? '#documentation' : currentPage === 'documentation-stuff' ? '#stuff-utile' : currentPage === 'documentation-protest' ? '#pendant-la-manif' : currentPage === 'documentation-questions' ? '#questions' : currentPage === 'documentation-after-custody' ? '#apres-la-gav' : currentPage === 'documentation-resources' ? '#contacts-ressources' : currentPage === 'submission' ? '#transmettre' : '#observatoire'">
   {{ currentPage === 'map' ? 'Aller à la carte' : currentPage === 'about' ? 'Aller à la présentation' : currentPage === 'documentation' ? 'Aller à la documentation' : currentPage === 'documentation-stuff' || currentPage === 'documentation-resources' ? 'Aller au contenu' : currentPage === 'submission' ? 'Aller au dépôt' : 'Aller aux publications' }}
 </a>
 <btf-site-header />
@@ -15,6 +15,8 @@
     <btf-documentation-protest />
   } @else if (currentPage === 'documentation-questions') {
     <btf-documentation-questions />
+  } @else if (currentPage === 'documentation-after-custody') {
+    <btf-documentation-after-custody />
   } @else if (currentPage === 'documentation-resources') {
     <btf-documentation-resources />
   } @else if (currentPage === 'submission') {

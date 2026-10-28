@@ -16,6 +16,8 @@ export class SiteHeaderComponent {
           ? 'documentation-protest'
           : /\/documentation\/questions\/?$/.test(window.location.pathname)
             ? 'documentation-questions'
+            : /\/documentation\/apres-la-gav\/?$/.test(window.location.pathname)
+              ? 'documentation-after-custody'
         : /\/documentation\/contacts-ressources\/?$/.test(window.location.pathname)
           ? 'documentation-resources'
           : /\/documentation\/?$/.test(window.location.pathname)

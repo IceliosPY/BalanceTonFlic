@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AboutComponent } from './components/about/about.component';
 import { DocumentationComponent } from './components/documentation/documentation.component';
+import { DocumentationAfterCustodyComponent } from './components/documentation-after-custody/documentation-after-custody.component';
 import { DocumentationProtestComponent } from './components/documentation-protest/documentation-protest.component';
 import { DocumentationQuestionsComponent } from './components/documentation-questions/documentation-questions.component';
 import { DocumentationResourcesComponent } from './components/documentation-resources/documentation-resources.component';
@@ -14,7 +15,7 @@ import { SubmissionComponent } from './components/submission/submission.componen
 
 @Component({
   selector: 'btf-root',
-  imports: [AboutComponent, DocumentationComponent, DocumentationProtestComponent, DocumentationQuestionsComponent, DocumentationResourcesComponent, DocumentationStuffComponent, SiteHeaderComponent, HeroComponent, ObservatoryComponent, PoliceViolenceMapComponent, SiteFooterComponent, SubmissionComponent],
+  imports: [AboutComponent, DocumentationAfterCustodyComponent, DocumentationComponent, DocumentationProtestComponent, DocumentationQuestionsComponent, DocumentationResourcesComponent, DocumentationStuffComponent, SiteHeaderComponent, HeroComponent, ObservatoryComponent, PoliceViolenceMapComponent, SiteFooterComponent, SubmissionComponent],
   templateUrl: './app.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -29,6 +30,8 @@ export class AppComponent {
           ? 'documentation-protest'
           : /\/documentation\/questions\/?$/.test(window.location.pathname)
             ? 'documentation-questions'
+            : /\/documentation\/apres-la-gav\/?$/.test(window.location.pathname)
+              ? 'documentation-after-custody'
         : /\/documentation\/contacts-ressources\/?$/.test(window.location.pathname)
           ? 'documentation-resources'
           : /\/documentation\/?$/.test(window.location.pathname)
