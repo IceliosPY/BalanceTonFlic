@@ -9,8 +9,10 @@
     "start": "ng serve",
     "prebuild": "npm run generate:shares",
     "build": "ng build",
+    "postbuild": "node scripts/generate-route-entries.mjs",
     "prebuild:pages": "npm run generate:shares",
     "build:pages": "ng build --base-href /BalanceTonFlic/",
+    "postbuild:pages": "node scripts/generate-route-entries.mjs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

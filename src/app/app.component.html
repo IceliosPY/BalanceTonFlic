@@ -1,7 +1,13 @@
-<a class="skip-link" href="#observatoire">Aller aux publications</a>
+<a class="skip-link" [href]="isMapPage ? '#carte' : '#observatoire'">
+  {{ isMapPage ? 'Aller à la carte' : 'Aller aux publications' }}
+</a>
 <btf-site-header />
 <main id="top">
-  <btf-hero />
-  <btf-observatory />
+  @if (isMapPage) {
+    <btf-police-violence-map />
+  } @else {
+    <btf-hero />
+    <btf-observatory />
+  }
 </main>
 <btf-site-footer />
