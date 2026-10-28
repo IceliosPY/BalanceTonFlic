@@ -2,7 +2,7 @@ import { copyFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 
 const outputRoot = 'dist/balance-ton-flic/browser';
-const routes = ['carte', 'a-propos'];
+const routes = ['carte', 'a-propos', 'transmettre'];
 
 for (const route of routes) {
   const destination = join(outputRoot, route);

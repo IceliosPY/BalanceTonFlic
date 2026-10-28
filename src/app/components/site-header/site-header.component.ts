@@ -10,5 +10,7 @@ export class SiteHeaderComponent {
     ? 'map'
     : /\/a-propos\/?$/.test(window.location.pathname)
       ? 'about'
-      : 'home';
+      : /\/transmettre\/?$/.test(window.location.pathname)
+        ? 'submission'
+        : 'home';
 }

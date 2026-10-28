@@ -1,5 +1,5 @@
-<a class="skip-link" [href]="currentPage === 'map' ? '#carte' : currentPage === 'about' ? '#a-propos' : '#observatoire'">
-  {{ currentPage === 'map' ? 'Aller à la carte' : currentPage === 'about' ? 'Aller à la présentation' : 'Aller aux publications' }}
+<a class="skip-link" [href]="currentPage === 'map' ? '#carte' : currentPage === 'about' ? '#a-propos' : currentPage === 'submission' ? '#transmettre' : '#observatoire'">
+  {{ currentPage === 'map' ? 'Aller à la carte' : currentPage === 'about' ? 'Aller à la présentation' : currentPage === 'submission' ? 'Aller au dépôt' : 'Aller aux publications' }}
 </a>
 <btf-site-header />
 <main id="top">
@@ -7,6 +7,8 @@
     <btf-police-violence-map />
   } @else if (currentPage === 'about') {
     <btf-about />
+  } @else if (currentPage === 'submission') {
+    <btf-submission />
   } @else {
     <btf-hero />
     <btf-observatory />

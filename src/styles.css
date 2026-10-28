@@ -47,6 +47,7 @@ button, input, select { font: inherit; }
 .main-nav > a:not(.nav-cta):hover { color: #ff403a; }
 .main-nav > a[aria-current="page"] { color: #ff403a; }
 .nav-cta { padding: 10px 14px; background: var(--red); color: var(--white); }
+.main-nav > .nav-cta[aria-current="page"] { color: var(--white); box-shadow: inset 0 -4px 0 var(--white); }
 
 .hero { background: var(--black); color: var(--white); border-bottom: 8px solid var(--red); }
 .hero-inner {
@@ -130,6 +131,15 @@ button, input, select { font: inherit; }
 .about-copy p { margin: 0; }
 .about-copy p + p { margin-top: 22px; color: #aaa59d; font-family: Arial, Helvetica, sans-serif; font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .07em; }
 
+.submission-page { min-height: calc(100vh - 76px); display: grid; align-items: center; padding-block: clamp(70px, 10vw, 140px); }
+.submission-inner { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(300px, .8fr); align-items: end; gap: clamp(50px, 8vw, 120px); }
+.submission-inner > * { min-width: 0; }
+.submission-inner h1 { margin: 0; font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif; font-size: clamp(4rem, 5.5vw, 5.5rem); line-height: .83; text-transform: uppercase; letter-spacing: -.025em; }
+.submission-panel { padding-top: 26px; border-top: 3px solid var(--red); }
+.submission-panel > p:first-child { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.25rem, 2vw, 1.65rem); line-height: 1.45; }
+.submission-placeholder { display: inline-flex; margin-top: 30px; padding: 14px 18px; background: #d5d0c7; color: #716c64; font-size: .7rem; font-weight: 900; text-transform: uppercase; letter-spacing: .08em; cursor: not-allowed; }
+.submission-note { margin: 18px 0 0; color: var(--muted); font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+
 .site-footer { display: flex; justify-content: space-between; align-items: center; gap: 35px; padding: 20px max(24px, calc((100vw - var(--max)) / 2)); background: var(--black); color: #aaa59d; font-size: .76rem; }
 .site-footer p { margin: 0; }
 .site-footer strong { color: var(--white); text-transform: uppercase; letter-spacing: .06em; }
@@ -178,6 +188,9 @@ button, input, select { font: inherit; }
   .about-page { min-height: calc(100vh - 68px); align-items: start; padding-block: 72px 96px; }
   .about-inner { grid-template-columns: 1fr; gap: 42px; }
   .about-inner h1 { font-size: clamp(4.4rem, 21vw, 6rem); }
+  .submission-page { min-height: calc(100vh - 68px); align-items: start; padding-block: 70px 90px; }
+  .submission-inner { grid-template-columns: 1fr; gap: 52px; }
+  .submission-inner h1 { font-size: clamp(2.9rem, 11.8vw, 4rem); }
   .card-body h3 { min-height: 0; }
   .site-footer { display: block; padding-block: 28px; }
   .project-credit img { width: 50px; height: 50px; }
