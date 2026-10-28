@@ -148,53 +148,55 @@
   <p class="disclaimer">{t("warning")}</p>
 
   <footer>
-    <section aria-labelledby="about">
-      <h2 id="about">{t("about")}</h2>
-      <p>{t("aboutText")}</p>
-      <p>
-        {t("guideIntro")}
-        <a href={t("guideUrl")} target="_blank" rel="noopener noreferrer"
-          >{t("guideTitle")}</a
-        >.
-      </p>
-      <p>
-        {t("freeSoftware")}
-        <a
-          href="https://github.com/IceliosPY/BalanceTonFlic/tree/main/vendor/masque"
-          target="_blank"
-          rel="noopener noreferrer">code source de la version intégrée</a
-        >
-      </p>
-    </section>
+    <div class="footer-content">
+      <section class="about-panel" aria-labelledby="about">
+        <h2 id="about">{t("about")}</h2>
+        <p>{t("aboutText")}</p>
+        <p>
+          {t("guideIntro")}
+          <a href={t("guideUrl")} target="_blank" rel="noopener noreferrer"
+            >{t("guideTitle")}</a
+          >.
+        </p>
+        <p>
+          {t("freeSoftware")}
+          <a
+            href="https://github.com/IceliosPY/BalanceTonFlic/tree/main/vendor/masque"
+            target="_blank"
+            rel="noopener noreferrer">code source de la version intégrée</a
+          >
+        </p>
+      </section>
 
-    <section aria-labelledby="created-by">
-      <h2 id="created-by">{t("createdBy")}</h2>
-      <ul class="orgs">
-        <li>
-          <a
-            href="https://onestla.tech"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="onestla"
-          >
-            <span class="emoji" aria-hidden="true">✊</span><span
-              >on<b>est</b>la.tech<b>/</b></span
+      <section class="creators-panel" aria-labelledby="created-by">
+        <h2 id="created-by">{t("createdBy")}</h2>
+        <ul class="orgs">
+          <li>
+            <a
+              href="https://onestla.tech"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="onestla"
             >
-          </a>
-          <p>{t("onestlaDescription")}</p>
-        </li>
-        <li>
-          <a
-            href="https://offensive.eco"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src={offensive} alt="L’Offensive" width="96" height="96" />
-          </a>
-          <p>{t("offensiveDescription")}</p>
-        </li>
-      </ul>
-    </section>
+              <span class="emoji" aria-hidden="true">✊</span><span
+                >on<b>est</b>la.tech<b>/</b></span
+              >
+            </a>
+            <p>{t("onestlaDescription")}</p>
+          </li>
+          <li>
+            <a
+              href="https://offensive.eco"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={offensive} alt="L’Offensive" width="64" height="64" />
+            </a>
+            <p>{t("offensiveDescription")}</p>
+          </li>
+        </ul>
+      </section>
+    </div>
 
     <div class="meta">
       {#if offline}
@@ -348,13 +350,24 @@
 
   footer {
     margin-top: 4rem;
-    padding-top: 0.5rem;
+    padding-top: 2rem;
     border-top: 3px solid var(--fg);
     font-size: 0.875rem;
   }
 
+  .footer-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(22rem, 0.9fr);
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    align-items: start;
+  }
+
+  .footer-content > section {
+    min-width: 0;
+  }
+
   h2 {
-    margin: 2.5rem 0 0.75rem;
+    margin: 0 0 1rem;
     font-family: Georgia, "Times New Roman", serif;
     font-size: 1.5rem;
   }
@@ -372,56 +385,111 @@
     list-style: none;
   }
 
+  .about-panel p {
+    margin: 0;
+  }
+
+  .about-panel p + p {
+    margin-top: 0.8rem;
+  }
+
   .orgs {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-    gap: 1.5rem;
+    gap: 0.75rem;
+    margin: 0;
+  }
+
+  .orgs li {
+    display: grid;
+    grid-template-columns: 8.5rem minmax(0, 1fr);
+    gap: 1rem;
+    align-items: center;
+    min-height: 5.5rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--line);
+    background: var(--tint);
   }
 
   .orgs a {
     display: inline-flex;
     align-items: center;
-    min-height: 96px;
+    min-height: 0;
     color: inherit;
     text-decoration: none;
   }
 
   .onestla {
     gap: 0.5rem;
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 
   .onestla .emoji {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
+  }
+
+  .orgs img {
+    width: 4rem;
+    height: 4rem;
+    object-fit: contain;
   }
 
   .orgs p {
-    margin: 0.25rem 0 0;
+    margin: 0;
     color: var(--muted);
+    font-size: 0.78rem;
+    line-height: 1.4;
   }
 
   .meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
+    gap: 1rem;
     align-items: center;
-    margin-top: 2rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--line);
+    margin-top: 2.5rem;
+    padding: 1rem;
+    border: 1px solid var(--line);
+    background: var(--tint);
     color: var(--muted);
   }
 
   .meta p {
     margin: 0;
+    font-size: 0.75rem;
+  }
+
+  .meta label {
+    display: flex;
+    grid-column: -2 / -1;
+    gap: 0.6rem;
+    align-items: center;
+    justify-self: end;
+    font-size: 0.75rem;
+  }
+
+  .meta select {
+    min-height: 2.4rem;
   }
 
   .credits {
-    margin-top: 1rem;
+    margin-top: 0.75rem;
     color: var(--muted);
   }
 
   .credits summary {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.25rem;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
     cursor: pointer;
+  }
+
+  .credits[open] {
+    padding: 0.5rem 1rem 1rem;
+    border: 1px solid var(--line);
+    background: var(--tint);
   }
 
   @media (max-width: 46rem) {
@@ -445,6 +513,23 @@
 
     .btf-back {
       text-align: right;
+    }
+
+    .footer-content {
+      grid-template-columns: 1fr;
+    }
+
+    .orgs li {
+      grid-template-columns: 9rem minmax(0, 1fr);
+    }
+
+    .meta {
+      grid-template-columns: 1fr;
+    }
+
+    .meta label {
+      grid-column: 1;
+      justify-self: start;
     }
   }
 </style>
