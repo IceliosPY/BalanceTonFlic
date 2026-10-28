@@ -6,8 +6,8 @@
   <nav class="main-nav" aria-label="Navigation principale">
     <a href="./#observatoire" [attr.aria-current]="currentPage === 'home' ? 'page' : null">Archives</a>
     <a href="carte/" [attr.aria-current]="currentPage === 'map' ? 'page' : null">Carte</a>
+    <a href="documentation/" aria-label="Documentation" [attr.aria-current]="currentPage === 'documentation' || currentPage === 'documentation-stuff' || currentPage === 'documentation-protest' || currentPage === 'documentation-questions' || currentPage === 'documentation-after-custody' || currentPage === 'documentation-resources' ? 'page' : null"><span class="nav-label-wide">Documentation</span><span class="nav-label-short" aria-hidden="true">Docs</span></a>
     <a href="a-propos/" [attr.aria-current]="currentPage === 'about' ? 'page' : null">À propos</a>
-    <a href="documentation/" aria-label="Documentation" [attr.aria-current]="currentPage === 'documentation' || currentPage === 'documentation-stuff' || currentPage === 'documentation-resources' ? 'page' : null"><span class="nav-label-wide">Documentation</span><span class="nav-label-short" aria-hidden="true">Docs</span></a>
     <a class="nav-cta" href="transmettre/" [attr.aria-current]="currentPage === 'submission' ? 'page' : null">Transmettre</a>
   </nav>
 </header>
