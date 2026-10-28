@@ -1,5 +1,5 @@
-<a class="skip-link" [href]="currentPage === 'map' ? '#carte' : currentPage === 'about' ? '#a-propos' : currentPage === 'documentation' ? '#documentation' : currentPage === 'submission' ? '#transmettre' : '#observatoire'">
-  {{ currentPage === 'map' ? 'Aller à la carte' : currentPage === 'about' ? 'Aller à la présentation' : currentPage === 'documentation' ? 'Aller à la documentation' : currentPage === 'submission' ? 'Aller au dépôt' : 'Aller aux publications' }}
+<a class="skip-link" [href]="currentPage === 'map' ? '#carte' : currentPage === 'about' ? '#a-propos' : currentPage === 'documentation' ? '#documentation' : currentPage === 'documentation-stuff' ? '#stuff-utile' : currentPage === 'submission' ? '#transmettre' : '#observatoire'">
+  {{ currentPage === 'map' ? 'Aller à la carte' : currentPage === 'about' ? 'Aller à la présentation' : currentPage === 'documentation' ? 'Aller à la documentation' : currentPage === 'documentation-stuff' ? 'Aller au contenu' : currentPage === 'submission' ? 'Aller au dépôt' : 'Aller aux publications' }}
 </a>
 <btf-site-header />
 <main id="top">
@@ -9,6 +9,8 @@
     <btf-about />
   } @else if (currentPage === 'documentation') {
     <btf-documentation />
+  } @else if (currentPage === 'documentation-stuff') {
+    <btf-documentation-stuff />
   } @else if (currentPage === 'submission') {
     <btf-submission />
   } @else {

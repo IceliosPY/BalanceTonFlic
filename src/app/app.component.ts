@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AboutComponent } from './components/about/about.component';
 import { DocumentationComponent } from './components/documentation/documentation.component';
+import { DocumentationStuffComponent } from './components/documentation-stuff/documentation-stuff.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { ObservatoryComponent } from './components/observatory/observatory.component';
 import { PoliceViolenceMapComponent } from './components/police-violence-map/police-violence-map.component';
@@ -10,7 +11,7 @@ import { SubmissionComponent } from './components/submission/submission.componen
 
 @Component({
   selector: 'btf-root',
-  imports: [AboutComponent, DocumentationComponent, SiteHeaderComponent, HeroComponent, ObservatoryComponent, PoliceViolenceMapComponent, SiteFooterComponent, SubmissionComponent],
+  imports: [AboutComponent, DocumentationComponent, DocumentationStuffComponent, SiteHeaderComponent, HeroComponent, ObservatoryComponent, PoliceViolenceMapComponent, SiteFooterComponent, SubmissionComponent],
   templateUrl: './app.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -19,8 +20,10 @@ export class AppComponent {
     ? 'map'
     : /\/a-propos\/?$/.test(window.location.pathname)
       ? 'about'
-      : /\/documentation\/?$/.test(window.location.pathname)
-        ? 'documentation'
+      : /\/documentation\/stuff-utile\/?$/.test(window.location.pathname)
+        ? 'documentation-stuff'
+        : /\/documentation\/?$/.test(window.location.pathname)
+          ? 'documentation'
         : /\/transmettre\/?$/.test(window.location.pathname)
           ? 'submission'
           : 'home';

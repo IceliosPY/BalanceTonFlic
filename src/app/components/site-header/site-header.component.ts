@@ -10,8 +10,10 @@ export class SiteHeaderComponent {
     ? 'map'
     : /\/a-propos\/?$/.test(window.location.pathname)
       ? 'about'
-      : /\/documentation\/?$/.test(window.location.pathname)
-        ? 'documentation'
+      : /\/documentation\/stuff-utile\/?$/.test(window.location.pathname)
+        ? 'documentation-stuff'
+        : /\/documentation\/?$/.test(window.location.pathname)
+          ? 'documentation'
         : /\/transmettre\/?$/.test(window.location.pathname)
           ? 'submission'
           : 'home';
