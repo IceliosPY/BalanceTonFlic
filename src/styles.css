@@ -177,11 +177,16 @@ button, input, select { font: inherit; }
 .guide-inner-wide { max-width: 1280px; }
 .guide-header-compact { max-width: 940px; padding-bottom: 26px; }
 .guide-header-compact h1 { font-size: clamp(3.4rem, 6.5vw, 6rem); }
-.justified-guide { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; padding-top: 28px; }
-.justified-module { min-width: 0; padding: 22px; border: 1px solid var(--line); border-top: 5px solid var(--black); background: var(--white); }
-.justified-module-index { margin: 0 0 20px; color: var(--red); font-size: .66rem; font-weight: 900; letter-spacing: .1em; }
-.justified-module > h2 { min-height: 2.1em; margin: 0 0 20px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.35rem, 2vw, 1.7rem); line-height: 1.05; }
-.justified-module-copy { display: grid; gap: 18px; }
+.justified-guide { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; align-items: start; padding-top: 28px; }
+.justified-module { min-width: 0; border: 1px solid var(--line); border-top: 5px solid var(--black); background: var(--white); }
+.justified-module summary { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: center; min-height: 92px; padding: 18px 20px; cursor: pointer; list-style: none; }
+.justified-module summary::-webkit-details-marker { display: none; }
+.justified-module summary:hover { background: #ece6da; }
+.justified-module-index { color: var(--red); font-size: .66rem; font-weight: 900; letter-spacing: .1em; }
+.justified-module summary strong { font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.15rem, 1.6vw, 1.45rem); line-height: 1.05; }
+.justified-module-toggle { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid var(--black); color: var(--red); font-size: 1.3rem; font-weight: 900; line-height: 1; }
+.justified-module[open] .justified-module-toggle { background: var(--black); color: var(--white); transform: rotate(45deg); }
+.justified-module-copy { display: grid; gap: 18px; margin: 0 20px 20px; padding-top: 18px; border-top: 1px solid var(--line); }
 .justified-module-copy > div { min-width: 0; }
 .justified-module-copy h3 { margin: 0 0 8px; color: var(--red); font-size: .62rem; font-weight: 900; text-transform: uppercase; letter-spacing: .1em; }
 .justified-module-copy p, .justified-module-copy ul { margin: 0; color: #44413c; font-size: .88rem; line-height: 1.45; }
@@ -271,9 +276,8 @@ button, input, select { font: inherit; }
   .guide-content { grid-template-columns: 1fr; }
   .guide-header-compact h1 { font-size: clamp(2.9rem, 13vw, 4.4rem); }
   .justified-guide { grid-template-columns: 1fr; gap: 14px; padding-top: 22px; }
-  .justified-module { padding: 19px; }
-  .justified-module-index { margin-bottom: 12px; }
-  .justified-module > h2 { min-height: 0; margin-bottom: 17px; }
+  .justified-module summary { min-height: 72px; padding: 14px 16px; }
+  .justified-module-copy { margin: 0 16px 17px; padding-top: 15px; }
   .justified-module-copy { gap: 15px; }
   .resource-module { grid-template-columns: 1fr; gap: 12px; padding: 24px 0; }
   .module-index, .resource-module h2, .resource-module > p:not(.module-index), .resource-module > a { grid-column: 1; grid-row: auto; }
