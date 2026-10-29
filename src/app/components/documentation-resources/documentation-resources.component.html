@@ -1,29 +1,34 @@
 <article class="guide-page" id="contacts-ressources" aria-labelledby="resources-title">
-  <div class="guide-inner section-shell">
+  <div class="guide-inner guide-inner-wide section-shell">
     <a class="guide-back" href="documentation/"><span aria-hidden="true">←</span> Documentation</a>
-    <header class="guide-header">
-      <p>06</p>
-      <h1 id="resources-title">Contacts et ressources</h1>
-    </header>
 
-    <div class="module-list">
-      <article class="resource-module">
-        <p class="module-index">Module 01</p>
-        <h2>Guide LDH du manifestant</h2>
-        <p>Gros rappel des protocoles policier, rappels juridictionnels qui recoupent ce qui a déjà été dit avant.</p>
-        <a href="https://www.ldh-france.org/wp-content/uploads/2023/01/GUIDE_LDH_MANIFESTANT_DEF-23-07-21.pdf" target="_blank" rel="noreferrer">
-          Consulter le PDF <span aria-hidden="true">↗</span>
-        </a>
-      </article>
+    <div class="documentation-switch-layout">
+      <header class="guide-header documentation-switch-heading">
+        <p>06</p>
+        <h1 id="resources-title">Contacts et ressources</h1>
+      </header>
 
-      <article class="resource-module">
-        <p class="module-index">Module 02</p>
-        <h2>ViolencesPolicieres.fr</h2>
-        <p>Site au sujet des violences policières.</p>
-        <a href="https://violencespolicieres.fr/" target="_blank" rel="noreferrer">
-          Consulter le site <span aria-hidden="true">↗</span>
-        </a>
-      </article>
+      <div class="documentation-switcher">
+        <nav class="documentation-tabs" role="tablist" aria-label="Contacts et ressources">
+          @for (entry of entries; track entry.number; let index = $index) {
+            <button type="button" class="documentation-tab" [class.is-active]="selectedEntry === index" [attr.aria-selected]="selectedEntry === index" [attr.aria-controls]="'resources-panel'" [id]="'resources-tab-' + index" role="tab" (click)="selectedEntry = index">
+              <span>{{ entry.number }}</span>
+              <strong>{{ entry.title }}</strong>
+            </button>
+          }
+        </nav>
+
+        <section class="documentation-panel" id="resources-panel" role="tabpanel" [attr.aria-labelledby]="'resources-tab-' + selectedEntry">
+          <p class="documentation-panel-index">Module {{ activeEntry.number }}</p>
+          <h2>{{ activeEntry.title }}</h2>
+          @for (paragraph of activeEntry.paragraphs; track paragraph) {
+            <p>{{ paragraph }}</p>
+          }
+          @if (activeEntry.href) {
+            <a [href]="activeEntry.href" target="_blank" rel="noreferrer">{{ activeEntry.action }} <span aria-hidden="true">↗</span></a>
+          }
+        </section>
+      </div>
     </div>
   </div>
 </article>

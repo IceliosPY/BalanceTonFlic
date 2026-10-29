@@ -1,63 +1,37 @@
 <article class="guide-page" id="questions" aria-labelledby="questions-title">
-  <div class="guide-inner section-shell">
+  <div class="guide-inner guide-inner-wide section-shell">
     <a class="guide-back" href="documentation/"><span aria-hidden="true">←</span> Documentation</a>
-    <header class="guide-header">
-      <p>03</p>
-      <h1 id="questions-title">Questions qui reviennent</h1>
-    </header>
 
-    <div class="module-list">
-      <article class="resource-module">
-        <p class="module-index">Module 01</p>
-        <h2>Sur la question du téléphone</h2>
-        <p>Sur la question du téléphone (encore).</p>
-        <a href="https://www.youtube.com/shorts/-cVPKvIsA5s" target="_blank" rel="noreferrer">
-          Voir la vidéo <span aria-hidden="true">↗</span>
-        </a>
-      </article>
-    </div>
+    <div class="documentation-switch-layout">
+      <header class="guide-header documentation-switch-heading">
+        <p>03</p>
+        <h1 id="questions-title">Questions qui reviennent</h1>
+      </header>
 
-    <section class="module-group" aria-labelledby="during-protest-title">
-      <h2 class="module-section-title" id="during-protest-title">Pendant la manif</h2>
+      <div class="documentation-switcher">
+        <nav class="documentation-tabs" role="tablist" aria-label="Questions fréquentes">
+          @for (entry of entries; track entry.number; let index = $index) {
+            <button type="button" class="documentation-tab" [class.is-active]="selectedEntry === index" [attr.aria-selected]="selectedEntry === index" [attr.aria-controls]="'questions-panel'" [id]="'questions-tab-' + index" role="tab" (click)="selectedEntry = index">
+              <span>{{ entry.number }}</span>
+              <strong>{{ entry.title }}</strong>
+            </button>
+          }
+        </nav>
 
-      <div class="module-list">
-        <article class="resource-module">
-          <p class="module-index">Module 02</p>
-          <h2>Un keuf doit-il toujours avoir son RIO affiché et visible ?</h2>
-          <p>Un keuf doit toujours avoir son RIO affiché et visible. S’il n’en a pas, FILMEZ.</p>
-        </article>
-
-        <article class="resource-module">
-          <p class="module-index">Module 03</p>
-          <h2>La police a-t-elle le droit de vous fouiller sans autorisation explicite de votre part ?</h2>
-          <p>Non, elle doit avoir soit une autorisation explicite, soit une réquisition d’un procureur.</p>
-        </article>
-
-        <article class="resource-module">
-          <p class="module-index">Module 04</p>
-          <h2>Que faire si quelqu’un fait une crise d’asthme ou de panique ?</h2>
-          <p>Extraire la personne le plus vite possible avant les tirs ou les charges, toujours à au moins deux personnes.</p>
-        </article>
-
-        <article class="resource-module">
-          <p class="module-index">Module 05</p>
-          <h2>Je me retrouve seul et je souhaite partir</h2>
-          <p>Restez groupé·es. Si une personne doit partir, elle est accompagnée de deux autres personnes. La police peut tout à fait organiser des rafles pour récupérer les personnes tentant de sortir de la manifestation.</p>
-        </article>
-
-        <article class="resource-module">
-          <p class="module-index">Module 06</p>
-          <h2>La police vient de tirer des lacrymogènes et d’autres grenades</h2>
-          <p>Ne touchez pas les objets tombés, en particulier les grenades. N’essayez surtout pas de renvoyer les grenades : c’est comme ça que des Gilets jaunes et des adolescents perdent des mains la plupart du temps, voire même le bras !</p>
-          <p>Pour les lacrymogènes, le mieux est d’utiliser une technique pour les éteindre : utiliser un plot de sécurité pour contenir le gaz et l’éteindre avec de l’eau.</p>
-        </article>
-
-        <article class="resource-module">
-          <p class="module-index">Module 07</p>
-          <h2>J’ai été ajouté à un groupe avant le début de la manifestation : dois-je tout supprimer avant qu’elle commence ?</h2>
-          <p>En cas d’organisation sur les réseaux sociaux : supprimez les groupes AVANT le début de la manifestation. Cela peut être utilisé par la police pour vous incriminer !</p>
-        </article>
+        <section class="documentation-panel" id="questions-panel" role="tabpanel" [attr.aria-labelledby]="'questions-tab-' + selectedEntry">
+          <p class="documentation-panel-index">Module {{ activeEntry.number }}</p>
+          @if (activeEntry.eyebrow) {
+            <p class="documentation-panel-eyebrow">{{ activeEntry.eyebrow }}</p>
+          }
+          <h2>{{ activeEntry.title }}</h2>
+          @for (paragraph of activeEntry.paragraphs; track paragraph) {
+            <p>{{ paragraph }}</p>
+          }
+          @if (activeEntry.href) {
+            <a [href]="activeEntry.href" target="_blank" rel="noreferrer">{{ activeEntry.action }} <span aria-hidden="true">↗</span></a>
+          }
+        </section>
       </div>
-    </section>
+    </div>
   </div>
 </article>
