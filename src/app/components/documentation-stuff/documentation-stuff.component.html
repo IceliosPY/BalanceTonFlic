@@ -1,70 +1,72 @@
 <article class="guide-page" id="stuff-utile" aria-labelledby="guide-title">
   <div class="guide-inner guide-inner-wide section-shell">
     <a class="guide-back" href="documentation/"><span aria-hidden="true">←</span> Documentation</a>
-    <header class="guide-header guide-header-compact">
-      <p>01</p>
-      <h1 id="guide-title">Stuff utile pour les manifs</h1>
-    </header>
+    <div class="stuff-layout">
+      <header class="guide-header guide-header-compact stuff-heading">
+        <p>01</p>
+        <h1 id="guide-title"><span>Stuff utile</span> <span>pour les</span> <span>manifs</span></h1>
+      </header>
 
-    <div class="radial-guide">
-      <nav class="radial-topics" role="tablist" aria-label="Éléments utiles">
-        @for (topic of topics; track topic.number; let index = $index) {
-          <button
-            type="button"
-            class="radial-topic"
-            [class.is-active]="selectedTopic === index"
-            [attr.aria-selected]="selectedTopic === index"
-            [attr.aria-controls]="'stuff-panel'"
-            [id]="'stuff-topic-' + index"
-            role="tab"
-            (click)="selectedTopic = index"
-          >
-            <span>{{ topic.number }}</span>
-            <strong>{{ topic.title }}</strong>
-          </button>
-        }
-      </nav>
+      <div class="radial-guide">
+        <nav class="radial-topics" role="tablist" aria-label="Éléments utiles">
+          @for (topic of topics; track topic.number; let index = $index) {
+            <button
+              type="button"
+              class="radial-topic"
+              [class.is-active]="selectedTopic === index"
+              [attr.aria-selected]="selectedTopic === index"
+              [attr.aria-controls]="'stuff-panel'"
+              [id]="'stuff-topic-' + index"
+              role="tab"
+              (click)="selectedTopic = index"
+            >
+              <span>{{ topic.number }}</span>
+              <strong>{{ topic.title }}</strong>
+            </button>
+          }
+        </nav>
 
-      <section
-        class="radial-panel"
-        id="stuff-panel"
-        role="tabpanel"
-        [attr.aria-labelledby]="'stuff-topic-' + selectedTopic"
-      >
-        <p class="radial-panel-index">{{ activeTopic.number }} / 07</p>
-        <h2>{{ activeTopic.title }}</h2>
+        <section
+          class="radial-panel"
+          id="stuff-panel"
+          role="tabpanel"
+          [attr.aria-labelledby]="'stuff-topic-' + selectedTopic"
+        >
+          <p class="radial-panel-index">{{ activeTopic.number }} / 07</p>
+          <h2>{{ activeTopic.title }}</h2>
 
-        <div class="radial-panel-section">
-          <h3>Conseil</h3>
-          @for (paragraph of activeTopic.advice; track paragraph) {
-            <p>{{ paragraph }}</p>
-          }
-          @if (activeTopic.adviceList) {
-            <ul>
-              @for (item of activeTopic.adviceList; track item) {
-                <li>{{ item }}</li>
-              }
-            </ul>
-          }
-        </div>
+          <div class="radial-panel-section">
+            <h3>Conseil</h3>
+            @for (paragraph of activeTopic.advice; track paragraph) {
+              <p>{{ paragraph }}</p>
+            }
+            @if (activeTopic.adviceList) {
+              <ul>
+                @for (item of activeTopic.adviceList; track item) {
+                  <li>{{ item }}</li>
+                }
+              </ul>
+            }
+          </div>
 
-        <div class="radial-panel-section radial-panel-justification" [class.is-empty]="activeTopic.emptyJustification">
-          <h3>Justification</h3>
-          @for (paragraph of activeTopic.justification; track paragraph) {
-            <p>{{ paragraph }}</p>
-          }
-          @if (activeTopic.justificationList) {
-            <ul>
-              @for (item of activeTopic.justificationList; track item) {
-                <li>{{ item }}</li>
-              }
-            </ul>
-          }
-          @if (activeTopic.emptyJustification) {
-            <p>À compléter.</p>
-          }
-        </div>
-      </section>
+          <div class="radial-panel-section radial-panel-justification" [class.is-empty]="activeTopic.emptyJustification">
+            <h3>Justification</h3>
+            @for (paragraph of activeTopic.justification; track paragraph) {
+              <p>{{ paragraph }}</p>
+            }
+            @if (activeTopic.justificationList) {
+              <ul>
+                @for (item of activeTopic.justificationList; track item) {
+                  <li>{{ item }}</li>
+                }
+              </ul>
+            }
+            @if (activeTopic.emptyJustification) {
+              <p>À compléter.</p>
+            }
+          </div>
+        </section>
+      </div>
     </div>
   </div>
 </article>
