@@ -1,5 +1,23 @@
 [
   {
+    "id": "x-2116595906728608157",
+    "addedAt": "2026-10-31T18:38:37Z",
+    "title": "Manifestant au sol lors d’une intervention policière à Lyon",
+    "description": "",
+    "date": "Publié le 31 octobre 2026",
+    "city": "Lyon",
+    "country": "France",
+    "category": "Manifestation",
+    "status": "Source archivée",
+    "verified": false,
+    "demo": false,
+    "videoUrl": "videos/x-2116595906728608157.mp4",
+    "audioUrl": "audio/x-2116595906728608157.mp3",
+    "thumbnailUrl": "thumbnails/x-2116595906728608157.jpg",
+    "sourceUrl": "https://x.com/AlertesInfos/status/2116595906728608157",
+    "tags": []
+  },
+  {
     "id": "upload-20261028-paris-street-medic",
     "addedAt": "2026-10-28T20:20:03Z",
     "title": "Un street medic frappé lors d’une intervention policière à Paris",
